@@ -1,6 +1,10 @@
 importFrom(edgeR, DGEList)
+importClassesFrom(edgeR, DGEList)
+
 importFrom(DESeq2, DESeqDataSetFromMatrix, normalizationFactors, counts, "normalizationFactors<-")
-importFrom(GenomicRanges, rowData, colData)
+importClassesFrom(DESeq2, DESeqDataSet)
+
+importFrom(GenomicRanges, rowData, colData, as.data.frame)
 importFrom(methods, setAs, setGeneric, setMethod)
 
-exportMethods(as.DESeqDataSet, as.DGEList)
+export(as.DESeqDataSet, as.DGEList)

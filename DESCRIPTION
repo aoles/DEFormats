@@ -1,11 +1,11 @@
 Package: DEFormats
 Type: Package
 Title: Differentian gene expression data formats converter
-Version: 0.0.1
-Date: 2014-08-14
+Version: 0.0.2
 Author: Andrzej Oles
 Maintainer: Andrzej Oles <andrzej.oles@embl.de>
 Description: Differentian gene expression data formats converter
 License: GPL-3
-Depends:
-Imports: DESeq2, edgeR, GenomicRanges, methods
+Depends: methods
+Imports: DESeq2, edgeR, GenomicRanges, 
+LazyData: true
