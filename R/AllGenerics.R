@@ -5,6 +5,7 @@
 #' Coerce objects to \code{\link[edgeR]{DGEList-class}}.
 #' 
 #' @param x An object
+#' @param ... Additional arguments to be passed to methods
 #' @return A \code{\link[edgeR]{DGEList-class}} object
 #' @author Andrzej Oles \email{andrzej.oles@@embl.de}
 setGeneric ("as.DGEList", function (x, ...) standardGeneric("as.DGEList") )

@@ -5,13 +5,18 @@
 \alias{DEFormats-package}
 \title{Convert between various differential gene expression data formats}
 \description{
-\pkg{DEFormats} facilitates data conversion between different formats used by gene expression analysis packages.
+\pkg{DEFormats} facilitates data conversion between formats used by gene
+expression analysis packages.
 }
 \details{
-Currently the package supports data conversion between the formats used by \pkg{DESeq2} and \pkg{edgeR}, i.e. \code{DESeqDataSet} and \code{DGEList}, respectively.
+Currently the package supports data conversion between \pkg{DESeq2} and
+\pkg{edgeR}, i.e. between the \code{\link[DESeq2]{DESeqDataSet-class}} and
+\code{\link[edgeR]{DGEList-class}}, objects, respectively.
 
 Objects can be coerced using the following methods
-\code{as.DESeqDataSet}
-\code{as.DGEList}
+\itemize{
+  \item \code{\link{as.DESeqDataSet}}
+  \item \code{\link{as.DGEList}}
+}
 }
 

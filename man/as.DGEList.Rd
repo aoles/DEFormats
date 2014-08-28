@@ -11,6 +11,8 @@ as.DGEList(x, ...)
 }
 \arguments{
 \item{x}{An object}
+
+\item{...}{Additional arguments to be passed to methods}
 }
 \value{
 A \code{\link[edgeR]{DGEList-class}} object

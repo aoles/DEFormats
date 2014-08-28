@@ -4,7 +4,7 @@
 \title{Example counts table of RNA-seq data}
 \format{A 1000 x 6 integer matrix with rows representing genes and columns different samples.}
 \source{
-The count table was generated using the \code{makeExampleDESeqDataSet} method from the \code{DESeq2} package.
+The count table was generated using the \code{\link[DESeq2]{makeExampleDESeqDataSet}} method from the \pkg{DESeq2} package.
 }
 \usage{
 data("mockRnaSeqData")

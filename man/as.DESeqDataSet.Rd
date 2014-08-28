@@ -11,6 +11,8 @@ as.DESeqDataSet(x, ...)
 }
 \arguments{
 \item{x}{An object}
+
+\item{...}{Additional arguments to be passed to methods}
 }
 \value{
 A \code{\link[DESeq2]{DESeqDataSet-class}} object

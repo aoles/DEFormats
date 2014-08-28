@@ -1,12 +1,17 @@
 #' Convert between various differential gene expression data formats
-#'
-#' \pkg{DEFormats} facilitates data conversion between different formats used by gene expression analysis packages.
-#'
-#' Currently the package supports data conversion between the formats used by \pkg{DESeq2} and \pkg{edgeR}, i.e. \code{DESeqDataSet} and \code{DGEList}, respectively.
-#'
-#' Objects can be coerced using the following methods
-#' \code{as.DESeqDataSet}
-#' \code{as.DGEList}
+#' 
+#' \pkg{DEFormats} facilitates data conversion between formats used by gene 
+#' expression analysis packages.
+#' 
+#' Currently the package supports data conversion between \pkg{DESeq2} and 
+#' \pkg{edgeR}, i.e. between the \code{\link[DESeq2]{DESeqDataSet-class}} and
+#' \code{\link[edgeR]{DGEList-class}}, objects, respectively.
+#' 
+#' Objects can be coerced using the following methods 
+#' \itemize{
+#'   \item \code{\link{as.DESeqDataSet}}
+#'   \item \code{\link{as.DGEList}}
+#' }
 #' @docType package
 #' @name DEFormats
 NULL
