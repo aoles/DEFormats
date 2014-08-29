@@ -18,3 +18,8 @@ setGeneric ("as.DGEList", function (x, ...) standardGeneric("as.DGEList") )
 #' @return A \code{\link[DESeq2]{DESeqDataSet-class}} object
 #' @author Andrzej Oles \email{andrzej.oles@@embl.de}
 setGeneric ("as.DESeqDataSet", function (x, ...) standardGeneric("as.DESeqDataSet") )
+
+# #' DGEList Constructor Generic
+# #' 
+# #' Create a \code{\link[edgeR]{DGEList-class}} object
+#setGeneric("DGEList")

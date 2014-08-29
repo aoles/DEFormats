@@ -30,10 +30,10 @@ require("edgeR")
 data(mockRnaSeqData)
 group = rep(c("case", "control"), each = 3)
 
-dgelist <- DGEList(counts = mockRnaSeqData, group = group)
-dgelist
+dge <- DGEList(counts = mockRnaSeqData, group = group)
+dge
 
-as.DESeqDataSet(dgelist)
+as.DESeqDataSet(dge)
 }
 \author{
 Andrzej Oles \email{andrzej.oles@embl.de}

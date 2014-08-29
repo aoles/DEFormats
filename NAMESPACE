@@ -1,10 +1,16 @@
+##imports
+
 importFrom(edgeR, DGEList)
 importClassesFrom(edgeR, DGEList)
 
 importFrom(DESeq2, DESeqDataSetFromMatrix, normalizationFactors, counts, "normalizationFactors<-", makeExampleDESeqDataSet)
 importClassesFrom(DESeq2, DESeqDataSet)
 
-importFrom(GenomicRanges, rowData, colData, as.data.frame)
+importFrom(GenomicRanges, rowData, colData, assay, as.data.frame, SummarizedExperiment)
 importFrom(methods, setAs, setGeneric, setMethod)
 
+# exports
+
 export(as.DESeqDataSet, as.DGEList)
+export(DGEList)
+export(mockRnaSeqData)

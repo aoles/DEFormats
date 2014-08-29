@@ -64,8 +64,30 @@ setAs(from = "DGEList",
 #' data(mockRnaSeqData)
 #' group = rep(c("case", "control"), each = 3)
 #' 
-#' dgelist <- DGEList(counts = mockRnaSeqData, group = group)
-#' dgelist
+#' dge <- DGEList(counts = mockRnaSeqData, group = group)
+#' dge
 #' 
-#' as.DESeqDataSet(dgelist)
+#' as.DESeqDataSet(dge)
 setMethod ("as.DESeqDataSet", signature(x = "DGEList"), function(x) as(x, "DESeqDataSet") )
+
+
+#' DGEList Constructor Generic
+#' 
+#' Create a \code{\link[edgeR]{DGEList-class}} object 
+#' @rdname DGEList
+setMethod ("DGEList", signature(counts = "SummarizedExperiment"), function(
+  counts = SummarizedExperiment(),
+  lib.size = colSums(assay(counts)),
+  norm.factors = rep(1, ncol(counts)),
+  group = rep(1, ncol(counts)),
+  genes = as.data.frame(rowData(counts)),
+  remove.zeros = FALSE
+  ) DGEList(
+    assay(counts),
+    lib.size = lib.size,
+    norm.factors = norm.factors,
+    group = group,
+    genes = genes,
+    remove.zeros = remove.zeros
+    ) 
+)

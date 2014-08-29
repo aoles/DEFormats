@@ -2,18 +2,39 @@
 \name{mockRnaSeqData}
 \alias{mockRnaSeqData}
 \title{Example counts table of RNA-seq data}
-\format{A 1000 x 6 integer matrix with rows representing genes and columns different samples.}
-\source{
-The count table was generated using the \code{\link[DESeq2]{makeExampleDESeqDataSet}} method from the \pkg{DESeq2} package.
-}
 \usage{
-data("mockRnaSeqData")
+mockRnaSeqData(output = c("matrix", "SummarizedExperiment"), rep = 3,
+  conditions = c("Case", "Control"), ...)
+}
+\arguments{
+\item{output}{Output format}
+
+\item{rep}{Number of replicates for each condition}
+
+\item{conditions}{Condition names}
+
+\item{...}{Arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}}
+}
+\value{
+Depending on the \code{output} setting a matrix or an \code{\link[GenomicRanges]{SummarizedExperiment-class}} object.
 }
 \description{
 Simulated expression data of an RNA-seq experiment.
 }
+\details{
+The count table is generated using the \code{\link[DESeq2]{makeExampleDESeqDataSet}} method from the \pkg{DESeq2} package.
+}
 \examples{
-data("mockRnaSeqData")
-str(mockRnaSeqData)
+## count data
+mockRnaSeqData = mockRnaSeqData()
+
+## return an SummarizedExperiment object
+mockRnaSeqDataSE = mockRnaSeqData(output = "SummarizedExperiment")
+
+require("GenomicRanges")
+identical(mockRnaSeqData, assay(mockRnaSeqDataSE))
+}
+\author{
+Andrzej Oles <\email{andrzej.oles@embl.de}>
 }
 
