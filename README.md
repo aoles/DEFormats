@@ -1,4 +1,6 @@
-DEFormats
-=========
+## Installation
 
-Differential gene expression data formats converter
+```
+# install.packages("devtools")
+devtools::install_github("aoles/DEFormats")
+```
