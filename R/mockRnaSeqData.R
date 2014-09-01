@@ -31,5 +31,3 @@ mockRnaSeqData = function(output = c("matrix", "SummarizedExperiment"), rep = 3,
           SummarizedExperiment = as(dds, "SummarizedExperiment")
   )  
 }
-
-# save(.mockRnaSeqData(), file = "./data/mockRnaSeqData.RData", compress = "xz")
