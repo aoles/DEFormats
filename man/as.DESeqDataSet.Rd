@@ -27,10 +27,10 @@ Coerce objects to \code{\link[DESeq2]{DESeqDataSet-class}}.
 \examples{
 require("edgeR")
 
-data(mockRnaSeqData)
+counts = mockRnaSeqData()
 group = rep(c("case", "control"), each = 3)
 
-dge <- DGEList(counts = mockRnaSeqData, group = group)
+dge = DGEList(counts = counts, group = group)
 dge
 
 as.DESeqDataSet(dge)

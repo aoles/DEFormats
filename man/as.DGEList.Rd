@@ -27,15 +27,10 @@ Coerce objects to \code{\link[edgeR]{DGEList-class}}.
 \examples{
 require("DESeq2")
 
-data(mockRnaSeqData)
-group = rep(c("case", "control"), each = 3)
+se = mockRnaSeqData(output = "SummarizedExperiment")
+se
 
-dds = DESeqDataSetFromMatrix(
-  countData = mockRnaSeqData,
-  colData = as.data.frame(group, row.names = colnames(mockRnaSeqData)),
-  design = ~ group
-  )
-
+dds = DESeqDataSet(se, design = ~ condition)
 dds
 
 as.DGEList(dds)

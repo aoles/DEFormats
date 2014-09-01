@@ -1,4 +1,4 @@
-#' Convert between various differential gene expression data formats
+#' Convert between differential gene expression data formats
 #' 
 #' \pkg{DEFormats} facilitates data conversion between formats used by gene 
 #' expression analysis packages.
