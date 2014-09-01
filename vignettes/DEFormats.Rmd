@@ -14,7 +14,7 @@ BiocStyle::markdown()
 `r Rpackage("DEFormats")` facilitates data conversion between most widely used tools for differential gene expression analysis.
 Currently, `r Biocpkg("DESeq2")` and `r Biocpkg("edgeR")` are supported.
 
-We provide data conversion functions of the form `as.<class>(object)`, where `<class>` is the name of the class to which `object` should be coerced. Aditionally, we define constructors for common count data input formats, e.g. *SummarizedExperiment* objects.
+We provide data conversion functions of the form `as.<class>(object)`, where `<class>` is the name of the class to which `object` should be coerced. Additionally, we define constructors for common count data input formats, e.g. *SummarizedExperiment* objects.
 
 ## Convert between *DESeqDataSet* and *DGEList* objects
 
@@ -28,7 +28,7 @@ library(DESeq2)
 library(edgeR)
 ```
 
-and construct a sample RNA seq experiment dataset.
+and construct a sample RNA seq experiment data set.
 
 ```{r counts}
 counts = mockRnaSeqData()
@@ -40,10 +40,16 @@ The `counts` object is a matrix with rows corresponding to genomic features and 
 head(counts)
 ````
 
-We will now use this count matrix to contruct a `DGEList` objects.
+Furthermore, we need to specify sample grouping
+
+```{r group}
+group = rep(c("A", "B"), each = 3)
+```
+
+We will now use this count matrix to construct a `DGEList` object.
 
 ```{r dge}
-dge = DGEList(counts, group = colnames(counts))
+dge = DGEList(counts, group = group)
 dge
 ```
 
@@ -67,8 +73,8 @@ Note that because of the use of reference classes in `DESeqDataSet` objects `ide
 ```{r identicalDDS}
 library(DESeq2)
 
-dds1 = DESeqDataSetFromMatrix(counts, data.frame(condition = colnames(counts)), ~ condition)
-dds2 = DESeqDataSetFromMatrix(counts, data.frame(condition = colnames(counts)), ~ condition)
+dds1 = DESeqDataSetFromMatrix(counts, data.frame(condition = group), ~ condition)
+dds2 = DESeqDataSetFromMatrix(counts, data.frame(condition = group), ~ condition)
 
 identical(dds1, dds2)
 ```
@@ -77,14 +83,14 @@ identical(dds1, dds2)
 
 ## Creating objects from *SummarizedExperiment*
 
-Let's create a sample expression dataset of an RNA-seq experiment.
+Let's create a sample expression data set of an RNA-seq experiment.
 
 ```{r mockRnaSeqDataSE}
 se = mockRnaSeqData(output = "SummarizedExperiment")
 se
 ```
 
-Similarily as for the *DESeqDataSet* objects in `r Biocpkg("DESeq2")`,
+Similarly as for the *DESeqDataSet* objects in `r Biocpkg("DESeq2")`,
 
 ```{r ddsSE}
 dds = DESeqDataSet(se, ~ condition)
@@ -93,7 +99,7 @@ dds = DESeqDataSet(se, ~ condition)
 we can directly use the generic *DGEList* constructor defined in `r Rpackage("DEFormats")` to create a corresponding object for the `r Biocpkg("edgeR")` pipeline:
 
 ```{r dgeSE}
-dge = DEFormats::DGEList(se, group = colnames(se))
+dge = DEFormats::DGEList(se, group = colData(se)$condition)
 dge
 ```
 
