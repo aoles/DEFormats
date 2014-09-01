@@ -7,9 +7,13 @@ setAs(from = "DESeqDataSet",
         genes = as.data.frame(rowData(from))
         if ( nrow(genes) == 0 ) genes = NULL
         
+        ## group by last variable
+        v = as.character(attr(terms(design(from)), "variables"))
+        group = v[length(v)]
+        
         to = DGEList(
-          counts = counts(from), 
-          group = from$group,
+          counts = counts(from),
+          group = colData(from)[[group]],   
           genes = genes
           )
                 
@@ -24,15 +28,10 @@ setAs(from = "DESeqDataSet",
 #' @examples
 #' require("DESeq2")
 #' 
-#' data(mockRnaSeqData)
-#' group = rep(c("case", "control"), each = 3)
+#' se = mockRnaSeqData(output = "SummarizedExperiment")
+#' se
 #' 
-#' dds = DESeqDataSetFromMatrix(
-#'   countData = mockRnaSeqData,
-#'   colData = as.data.frame(group, row.names = colnames(mockRnaSeqData)),
-#'   design = ~ group
-#'   )
-#'   
+#' dds = DESeqDataSet(se, design = ~ condition)   
 #' dds
 #' 
 #' as.DGEList(dds)
@@ -61,10 +60,10 @@ setAs(from = "DGEList",
 #' @examples
 #' require("edgeR")
 #' 
-#' data(mockRnaSeqData)
+#' counts = mockRnaSeqData()
 #' group = rep(c("case", "control"), each = 3)
 #' 
-#' dge <- DGEList(counts = mockRnaSeqData, group = group)
+#' dge = DGEList(counts = counts, group = group)
 #' dge
 #' 
 #' as.DESeqDataSet(dge)
