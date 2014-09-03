@@ -1,7 +1,7 @@
 Package: DEFormats
 Type: Package
 Title: Differential gene expression data formats converter
-Version: 0.0.4
+Version: 0.0.5
 Author: Andrzej Oles
 Maintainer: Andrzej Oles <andrzej.oles@embl.de>
 Description: Differential gene expression data formats converter

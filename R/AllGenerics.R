@@ -1,5 +1,3 @@
-## set S4 generics
-
 #' Coerce objects to DGEList
 #' 
 #' Coerce objects to \code{\link[edgeR]{DGEList-class}}.
@@ -8,7 +6,8 @@
 #' @param ... Additional arguments to be passed to methods
 #' @return A \code{\link[edgeR]{DGEList-class}} object
 #' @author Andrzej Oles \email{andrzej.oles@@embl.de}
-setGeneric ("as.DGEList", function (x, ...) standardGeneric("as.DGEList") )
+#setGeneric ("as.DGEList", function (x, ...) standardGeneric("as.DGEList") )
+as.DGEList = function (x, ...) UseMethod("as.DGEList")
 
 #' Coerce objects to DESeqDataSet
 #' 
@@ -17,7 +16,8 @@ setGeneric ("as.DGEList", function (x, ...) standardGeneric("as.DGEList") )
 #' @inheritParams as.DGEList
 #' @return A \code{\link[DESeq2]{DESeqDataSet-class}} object
 #' @author Andrzej Oles \email{andrzej.oles@@embl.de}
-setGeneric ("as.DESeqDataSet", function (x, ...) standardGeneric("as.DESeqDataSet") )
+#setGeneric ("as.DESeqDataSet", function (x, ...) standardGeneric("as.DESeqDataSet") )
+as.DESeqDataSet = function (x, ...) UseMethod("as.DESeqDataSet")
 
 # #' DGEList Constructor Generic
 # #' 

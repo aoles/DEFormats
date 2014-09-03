@@ -12,5 +12,8 @@ importFrom(methods, setAs, setGeneric, setMethod)
 # exports
 
 export(as.DESeqDataSet, as.DGEList)
+S3method(as.DESeqDataSet, DGEList)
+S3method(as.DGEList, DESeqDataSet)
+
 export(DGEList)
 export(mockRnaSeqData)

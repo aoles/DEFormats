@@ -12,6 +12,7 @@
 #'   \item \code{\link{as.DESeqDataSet}}
 #'   \item \code{\link{as.DGEList}}
 #' }
+#' @author Andrzej Oles \email{andrzej.oles@@embl.de}
 #' @docType package
 #' @name DEFormats
 NULL
