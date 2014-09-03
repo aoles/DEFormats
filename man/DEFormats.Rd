@@ -19,4 +19,7 @@ Objects can be coerced using the following methods
   \item \code{\link{as.DGEList}}
 }
 }
+\author{
+Andrzej Oles <\email{andrzej.oles@embl.de}>
+}
 
