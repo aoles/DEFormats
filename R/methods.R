@@ -5,7 +5,7 @@ setAs(from = "DESeqDataSet",
       def = function(from) {
         
         ## get annotation information from GRangesList
-        genes = as.data.frame(rowData(from))
+        genes = as.data.frame(rowRanges(from))
         if ( nrow(genes) == 0 ) genes = NULL
         
         ## get sample description
@@ -86,16 +86,23 @@ as.DESeqDataSet.DGEList = function (x, ...) as(x, "DESeqDataSet")
 #' DGEList Constructor Generic
 #' 
 #' Create a \code{\link[edgeR]{DGEList-class}} object 
+#' 
+#' @param counts numeric matrix of read counts
+#' @param lib.size numeric vector giving the total count (sequence depth) for each library
+#' @param norm.factors numeric vector of normalization factors that modify the library sizes
+#' @param group vector or factor giving the experimental group/condition for each sample/library
+#' @param genes data frame containing annotation information for each gene
+#' @param remove.zeros logical, whether to remove rows that have 0 total count 
+#' 
 #' @rdname DGEList
-setMethod ("DGEList", signature(counts = "SummarizedExperiment"), function(
+setMethod ("DGEList", signature(counts = "SummarizedExperiment0"), function(
   counts = SummarizedExperiment(),
   lib.size = colSums(assay(counts)),
   norm.factors = rep(1, ncol(counts)),
   group = rep(1, ncol(counts)),
-  genes = as.data.frame(rowData(counts)),
+  genes = as.data.frame(rowRanges(counts)),
   remove.zeros = FALSE
   ) {
-  
     dge = DGEList(
       assay(counts),
       lib.size = lib.size,

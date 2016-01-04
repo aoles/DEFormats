@@ -99,7 +99,7 @@ dds = DESeqDataSet(se, ~ condition)
 we can directly use the generic *DGEList* constructor defined in `r Rpackage("DEFormats")` to create a corresponding object for the `r Biocpkg("edgeR")` pipeline:
 
 ```{r dgeSE}
-dge = DEFormats::DGEList(se, group = colData(se)$condition)
+dge = DEFormats::DGEList(se, group = GenomicRanges::colData(se)$condition)
 dge
 ```
 

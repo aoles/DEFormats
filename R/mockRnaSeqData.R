@@ -28,6 +28,6 @@ mockRnaSeqData = function(output = c("matrix", "SummarizedExperiment"), rep = 3,
   
   switch (output, 
           matrix = counts(dds), 
-          SummarizedExperiment = as(dds, "SummarizedExperiment")
+          SummarizedExperiment = as(dds, "RangedSummarizedExperiment")
   )  
 }
