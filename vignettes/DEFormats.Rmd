@@ -86,7 +86,7 @@ identical(dds1, dds2)
 Let's create a sample expression data set of an RNA-seq experiment.
 
 ```{r mockRnaSeqDataSE}
-se = mockRnaSeqData(output = "SummarizedExperiment")
+se = mockRnaSeqData(output = "RangedSummarizedExperiment")
 se
 ```
 
