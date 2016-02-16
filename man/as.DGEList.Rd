@@ -27,7 +27,7 @@ Coerce objects to \code{\link[edgeR]{DGEList-class}}.
 \examples{
 require("DESeq2")
 
-se = mockRnaSeqData(output = "SummarizedExperiment")
+se = mockRnaSeqData(output = "RangedSummarizedExperiment")
 se
 
 dds = DESeqDataSet(se, design = ~ condition)   

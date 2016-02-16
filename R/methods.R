@@ -40,7 +40,7 @@ setAs(from = "DESeqDataSet",
 #' @examples
 #' require("DESeq2")
 #' 
-#' se = mockRnaSeqData(output = "SummarizedExperiment")
+#' se = mockRnaSeqData(output = "RangedSummarizedExperiment")
 #' se
 #' 
 #' dds = DESeqDataSet(se, design = ~ condition)   
