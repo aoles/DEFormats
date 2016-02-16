@@ -5,7 +5,7 @@
 \title{Example counts table of RNA-seq data}
 \usage{
 mockRnaSeqData(output = c("matrix", "RangedSummarizedExperiment"), rep = 3,
-  conditions = c("Case", "Control"), ...)
+  conditions = c("Case", "Control"), seed = 0L, ...)
 }
 \arguments{
 \item{output}{Output format}
@@ -14,10 +14,12 @@ mockRnaSeqData(output = c("matrix", "RangedSummarizedExperiment"), rep = 3,
 
 \item{conditions}{Condition names}
 
+\item{seed}{random number generator seed}
+
 \item{...}{Arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}}
 }
 \value{
-Depending on the \code{output} setting a matrix or an \code{\link[GenomicRanges]{RangedSummarizedExperiment-class}} object.
+Depending on the \code{output} setting a matrix or an \code{\link[SummarizedExperiment]{RangedSummarizedExperiment-class}} object.
 }
 \description{
 Simulated expression data of an RNA-seq experiment.
