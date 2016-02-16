@@ -1,10 +1,11 @@
 Package: DEFormats
 Type: Package
 Title: Differential gene expression data formats converter
-Version: 0.0.6
-Author: Andrzej Oles
-Maintainer: Andrzej Oles <andrzej.oles@embl.de>
-Description: Covert between data formats used by differential gene expression analysis tools.
+Version: 0.0.7
+Encoding: UTF-8
+Author: Andrzej Oleś
+Maintainer: Andrzej Oleś <andrzej.oles@embl.de>
+Description: Covert between various data formats used by different differential gene expression analysis tools.
 License: GPL-3
 Depends:
     R (>= 2.10),
@@ -12,7 +13,7 @@ Depends:
 Imports:
     DESeq2,
     edgeR,
-    GenomicRanges
+    SummarizedExperiment
 Suggests:
     BiocStyle (>= 1.3.10),
     knitr

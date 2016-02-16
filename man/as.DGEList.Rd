@@ -36,6 +36,6 @@ dds
 as.DGEList(dds)
 }
 \author{
-Andrzej Oles \email{andrzej.oles@embl.de}
+Andrzej Oleś <\email{andrzej.oles@embl.de}>, 2016
 }
 

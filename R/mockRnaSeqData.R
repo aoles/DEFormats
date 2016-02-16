@@ -8,18 +8,19 @@
 #' @param rep Number of replicates for each condition
 #' @param conditions Condition names
 #' @param ... Arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}
-#' @return Depending on the \code{output} setting a matrix or an \code{\link[GenomicRanges]{SummarizedExperiment-class}} object.
-#' @author Andrzej Oles <\email{andrzej.oles@@embl.de}>
+#' @return Depending on the \code{output} setting a matrix or an \code{\link[GenomicRanges]{RangedSummarizedExperiment-class}} object.
+#' @template author
 #' @examples
 #' ## count data
 #' mockRnaSeqData = mockRnaSeqData()
 #' 
-#' ## return an SummarizedExperiment object
-#' mockRnaSeqDataSE = mockRnaSeqData(output = "SummarizedExperiment")
+#' ## return an RangedSummarizedExperiment object
+#' mockRnaSeqDataSE = mockRnaSeqData(output = "RangedSummarizedExperiment")
 #' 
-#' require("GenomicRanges")
+#' require("SummarizedExperiment")
 #' identical(mockRnaSeqData, assay(mockRnaSeqDataSE))
-mockRnaSeqData = function(output = c("matrix", "SummarizedExperiment"), rep = 3, conditions = c("Case", "Control"), ...) {
+#' @export
+mockRnaSeqData = function(output = c("matrix", "RangedSummarizedExperiment"), rep = 3, conditions = c("Case", "Control"), ...) {
   output = match.arg(output)
   
   set.seed(1)
@@ -28,6 +29,6 @@ mockRnaSeqData = function(output = c("matrix", "SummarizedExperiment"), rep = 3,
   
   switch (output, 
           matrix = counts(dds), 
-          SummarizedExperiment = as(dds, "RangedSummarizedExperiment")
+          RangedSummarizedExperiment = as(dds, "RangedSummarizedExperiment")
   )  
 }

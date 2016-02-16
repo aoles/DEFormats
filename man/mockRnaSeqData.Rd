@@ -4,7 +4,7 @@
 \alias{mockRnaSeqData}
 \title{Example counts table of RNA-seq data}
 \usage{
-mockRnaSeqData(output = c("matrix", "SummarizedExperiment"), rep = 3,
+mockRnaSeqData(output = c("matrix", "RangedSummarizedExperiment"), rep = 3,
   conditions = c("Case", "Control"), ...)
 }
 \arguments{
@@ -17,7 +17,7 @@ mockRnaSeqData(output = c("matrix", "SummarizedExperiment"), rep = 3,
 \item{...}{Arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}}
 }
 \value{
-Depending on the \code{output} setting a matrix or an \code{\link[GenomicRanges]{SummarizedExperiment-class}} object.
+Depending on the \code{output} setting a matrix or an \code{\link[GenomicRanges]{RangedSummarizedExperiment-class}} object.
 }
 \description{
 Simulated expression data of an RNA-seq experiment.
@@ -29,13 +29,13 @@ The count table is generated using the \code{\link[DESeq2]{makeExampleDESeqDataS
 ## count data
 mockRnaSeqData = mockRnaSeqData()
 
-## return an SummarizedExperiment object
-mockRnaSeqDataSE = mockRnaSeqData(output = "SummarizedExperiment")
+## return an RangedSummarizedExperiment object
+mockRnaSeqDataSE = mockRnaSeqData(output = "RangedSummarizedExperiment")
 
-require("GenomicRanges")
+require("SummarizedExperiment")
 identical(mockRnaSeqData, assay(mockRnaSeqDataSE))
 }
 \author{
-Andrzej Oles <\email{andrzej.oles@embl.de}>
+Andrzej Oleś <\email{andrzej.oles@embl.de}>, 2016
 }
 

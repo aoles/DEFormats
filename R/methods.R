@@ -1,5 +1,4 @@
-## DESeqDataSet -> DGEList
-
+## does not need to be exported
 setAs(from = "DESeqDataSet",
       to = "DGEList",
       def = function(from) {
@@ -48,11 +47,12 @@ setAs(from = "DESeqDataSet",
 #' dds
 #' 
 #' as.DGEList(dds)
-#setMethod ("as.DGEList", signature(x = "DESeqDataSet"), function(x) as(x, "DGEList") )
+#' @export
 as.DGEList.DESeqDataSet = function (x, ...) as(x, "DGEList")
 
-## DGEList -> DESeqDataSet
+#setMethod ("as.DGEList", signature(x = "DESeqDataSet"), function(x) as(x, "DGEList") )
 
+## does not need to be exported
 setAs(from = "DGEList",
       to = "DESeqDataSet",      
       def = function(from) {
@@ -80,8 +80,10 @@ setAs(from = "DGEList",
 #' dge
 #' 
 #' as.DESeqDataSet(dge)
-#setMethod ("as.DESeqDataSet", signature(x = "DGEList"), function(x) as(x, "DESeqDataSet") )
+#' @export
 as.DESeqDataSet.DGEList = function (x, ...) as(x, "DESeqDataSet")
+
+#setMethod ("as.DESeqDataSet", signature(x = "DGEList"), function(x) as(x, "DESeqDataSet") )
 
 #' DGEList Constructor Generic
 #' 
@@ -95,6 +97,8 @@ as.DESeqDataSet.DGEList = function (x, ...) as(x, "DESeqDataSet")
 #' @param remove.zeros logical, whether to remove rows that have 0 total count 
 #' 
 #' @rdname DGEList
+#' @template author
+#' @export
 setMethod ("DGEList", signature(counts = "SummarizedExperiment0"), function(
   counts = SummarizedExperiment(),
   lib.size = colSums(assay(counts)),
