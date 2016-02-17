@@ -90,25 +90,22 @@ as.DESeqDataSet.DGEList = function (x, ...) as(x, "DESeqDataSet")
 #' 
 #' @rdname DGEList
 #' @export
-setMethod ("DGEList", signature(counts = "SummarizedExperiment0"), function(
-  counts = SummarizedExperiment(),
-  lib.size = colSums(assay(counts)),
-  norm.factors = rep(1, ncol(counts)),
-  group = rep(1, ncol(counts)),
-  genes = as.data.frame(rowRanges(counts)),
-  remove.zeros = FALSE
-  ) {
-    dge = DGEList(
-      assay(counts),
-      lib.size = lib.size,
-      norm.factors = norm.factors,
-      group = group,
-      genes = genes,
-      remove.zeros = remove.zeros
-      ) 
+setMethod ("DGEList", signature(counts = "RangedSummarizedExperiment"),
+  function(counts,
+           lib.size = colSums(assay(counts)),
+           norm.factors = rep(1, ncol(counts)),
+           group = rep(1, ncol(counts)),
+           genes = as.data.frame(rowRanges(counts)),
+           remove.zeros = FALSE) {
+    dge = DGEList(assay(counts),
+                  lib.size = lib.size,
+                  norm.factors = norm.factors,
+                  group = group,
+                  genes = genes,
+                  remove.zeros = remove.zeros)
     
     ## copy remaining sample metadata removing any duplicates
-    df = data.frame(dge$samples, as.data.frame(colData(counts)))    
+    df = data.frame(dge$samples, colData(counts))
     dge$samples = df[!duplicated(as.list(df))]
     
     dge
