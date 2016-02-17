@@ -23,7 +23,13 @@
 #' @export
 mockRnaSeqData = function(output = c("matrix", "RangedSummarizedExperiment"), rep = 3, conditions = c("Case", "Control"), seed = 0L, ...) {
   output = match.arg(output)
-  
+  oldseed <- .GlobalEnv$.Random.seed
+  on.exit({
+    if (!is.null(oldseed)) 
+      .GlobalEnv$.Random.seed <- oldseed
+    else
+      rm(".Random.seed", envir = .GlobalEnv)
+    })
   set.seed(seed)
   
   dds = makeExampleDESeqDataSet(m = 2 * rep, ...)
