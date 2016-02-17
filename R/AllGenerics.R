@@ -1,21 +1,21 @@
-#' Coerce objects to DGEList
+#' Convert to DGEList
 #' 
-#' Coerce objects to \code{\link[edgeR]{DGEList-class}}.
+#' Coerces an object to \linkS4class{DGEList}.
 #' 
-#' @param x An object
-#' @param ... Additional arguments to be passed to methods
-#' @return A \code{\link[edgeR]{DGEList-class}} object
+#' @param x an \R object
+#' @param ... additional arguments to be passed to methods
+#' @return A \code{\linkS4class{DGEList}} object.
 #' @template author
 #' @export
 as.DGEList = function (x, ...) UseMethod("as.DGEList")
 #setGeneric ("as.DGEList", function (x, ...) standardGeneric("as.DGEList") )
 
-#' Coerce objects to DESeqDataSet
+#' Convert to DESeqDataSet
 #' 
-#' Coerce objects to \code{\link[DESeq2]{DESeqDataSet-class}}.
+#' Coerces an object to \linkS4class{DESeqDataSet}.
 #' 
 #' @inheritParams as.DGEList
-#' @return A \code{\link[DESeq2]{DESeqDataSet-class}} object
+#' @return A \code{\linkS4class{DESeqDataSet}} object
 #' @template author
 #' @export
 as.DESeqDataSet = function (x, ...) UseMethod("as.DESeqDataSet")
@@ -23,7 +23,8 @@ as.DESeqDataSet = function (x, ...) UseMethod("as.DESeqDataSet")
 
 #' DGEList Constructor Generic
 #'
-#' Create a \code{\link[edgeR]{DGEList-class}} object
+#' Creates a \linkS4class{DGEList} object.
+#' 
 #' @template author
 #' @export
-setGeneric("DGEList")
+setGeneric("DGEList", valueClass = "DGEList")

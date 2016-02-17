@@ -4,12 +4,12 @@
 #' 
 #' The count table is generated using the \code{\link[DESeq2]{makeExampleDESeqDataSet}} method from the \pkg{DESeq2} package.
 #' 
-#' @param output Output format
-#' @param rep Number of replicates for each condition
-#' @param conditions Condition names
+#' @param output output type
+#' @param rep number of replicates for each condition
+#' @param conditions condition names
 #' @param seed random number generator seed
-#' @param ... Arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}
-#' @return Depending on the \code{output} setting a matrix or an \code{\link[SummarizedExperiment]{RangedSummarizedExperiment-class}} object.
+#' @param ... arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}
+#' @return Depending on the \code{output} setting a matrix or an \code{\linkS4class{RangedSummarizedExperiment}} object.
 #' @template author
 #' @examples
 #' ## count data

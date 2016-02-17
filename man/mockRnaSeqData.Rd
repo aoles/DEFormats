@@ -8,18 +8,18 @@ mockRnaSeqData(output = c("matrix", "RangedSummarizedExperiment"), rep = 3,
   conditions = c("Case", "Control"), seed = 0L, ...)
 }
 \arguments{
-\item{output}{Output format}
+\item{output}{output type}
 
-\item{rep}{Number of replicates for each condition}
+\item{rep}{number of replicates for each condition}
 
-\item{conditions}{Condition names}
+\item{conditions}{condition names}
 
 \item{seed}{random number generator seed}
 
-\item{...}{Arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}}
+\item{...}{arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}}
 }
 \value{
-Depending on the \code{output} setting a matrix or an \code{\link[SummarizedExperiment]{RangedSummarizedExperiment-class}} object.
+Depending on the \code{output} setting a matrix or an \code{\linkS4class{RangedSummarizedExperiment}} object.
 }
 \description{
 Simulated expression data of an RNA-seq experiment.

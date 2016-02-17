@@ -3,26 +3,26 @@
 \name{as.DESeqDataSet}
 \alias{as.DESeqDataSet}
 \alias{as.DESeqDataSet.DGEList}
-\title{Coerce objects to DESeqDataSet}
+\title{Convert to DESeqDataSet}
 \usage{
 as.DESeqDataSet(x, ...)
 
 \method{as.DESeqDataSet}{DGEList}(x, ...)
 }
 \arguments{
-\item{x}{An object}
+\item{x}{an \R object}
 
-\item{...}{Additional arguments to be passed to methods}
+\item{...}{additional arguments to be passed to methods}
 }
 \value{
-A \code{\link[DESeq2]{DESeqDataSet-class}} object
+A \code{\linkS4class{DESeqDataSet}} object
 }
 \description{
-Coerce objects to \code{\link[DESeq2]{DESeqDataSet-class}}.
+Coerces an object to \linkS4class{DESeqDataSet}.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{DGEList}: Coerce \code{\link[edgeR]{DGEList-class}} objects to \code{\link[DESeq2]{DESeqDataSet-class}}.
+\item \code{DGEList}: Coerce \code{\link[edgeR]{DGEList-class}} objects to \code{\linkS4class{DESeqDataSet}}.
 }}
 \examples{
 require("edgeR")

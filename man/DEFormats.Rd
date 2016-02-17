@@ -4,20 +4,20 @@
 \name{DEFormats}
 \alias{DEFormats}
 \alias{DEFormats-package}
-\title{Convert between differential gene expression data formats}
+\title{Convert Between Differential Gene Expression Data Formats}
 \description{
-\pkg{DEFormats} facilitates data conversion between various formats used by
+\pkg{DEFormats} provides data converters between various formats used by
 different gene expression analysis packages.
 }
 \details{
 Currently the package supports data conversion between \pkg{DESeq2} and 
-\pkg{edgeR}, i.e. between the \code{\link[DESeq2]{DESeqDataSet-class}} and 
-\code{\link[edgeR]{DGEList-class}}, objects, respectively.
+\pkg{edgeR}, i.e., between \code{\linkS4class{DESeqDataSet}} and 
+\code{\linkS4class{DGEList}} objects, respectively.
 
 Objects can be coerced using the following methods \itemize{ \item
 \code{\link{as.DESeqDataSet}} \item \code{\link{as.DGEList}} }
 }
 \author{
-Andrzej Oleś \email{andrzej.oles@embl.de}
+Andrzej Oleś <\email{andrzej.oles@embl.de}>, 2016
 }
 

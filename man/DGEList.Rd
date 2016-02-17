@@ -3,20 +3,20 @@
 \docType{methods}
 \name{DGEList}
 \alias{DGEList}
-\alias{DGEList,SummarizedExperiment0-method}
+\alias{DGEList,RangedSummarizedExperiment-method}
 \title{DGEList Constructor Generic}
 \usage{
 DGEList(counts = matrix(0, 0, 0), lib.size = colSums(counts),
   norm.factors = rep(1, ncol(counts)), group = rep(1, ncol(counts)),
   genes = NULL, remove.zeros = FALSE)
 
-\S4method{DGEList}{SummarizedExperiment0}(counts = SummarizedExperiment(),
+\S4method{DGEList}{RangedSummarizedExperiment}(counts = matrix(0, 0, 0),
   lib.size = colSums(assay(counts)), norm.factors = rep(1, ncol(counts)),
   group = rep(1, ncol(counts)), genes = as.data.frame(rowRanges(counts)),
   remove.zeros = FALSE)
 }
 \arguments{
-\item{counts}{numeric matrix of read counts}
+\item{counts}{read counts, either a numeric matrix or a \linkS4class{RangedSummarizedExperiment} object}
 
 \item{lib.size}{numeric vector giving the total count (sequence depth) for each library}
 
@@ -29,13 +29,9 @@ DGEList(counts = matrix(0, 0, 0), lib.size = colSums(counts),
 \item{remove.zeros}{logical, whether to remove rows that have 0 total count}
 }
 \description{
-Create a \code{\link[edgeR]{DGEList-class}} object
-
-Create a \code{\link[edgeR]{DGEList-class}} object
+Creates a \linkS4class{DGEList} object.
 }
 \author{
-Andrzej Oleś <\email{andrzej.oles@embl.de}>, 2016
-
 Andrzej Oleś <\email{andrzej.oles@embl.de}>, 2016
 }
 

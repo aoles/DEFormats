@@ -36,7 +36,7 @@ setAs(from = "DESeqDataSet",
         return(to)
       })
 
-#' @describeIn as.DGEList Coerce \code{\link[DESeq2]{DESeqDataSet-class}} objects to \code{\link[edgeR]{DGEList-class}}.
+#' @describeIn as.DGEList Coerce \code{\linkS4class{DESeqDataSet}} objects to \code{\link[edgeR]{DGEList-class}}.
 #' @examples
 #' require("DESeq2")
 #' 
@@ -49,8 +49,6 @@ setAs(from = "DESeqDataSet",
 #' as.DGEList(dds)
 #' @export
 as.DGEList.DESeqDataSet = function (x, ...) as(x, "DGEList")
-
-#setMethod ("as.DGEList", signature(x = "DESeqDataSet"), function(x) as(x, "DGEList") )
 
 ## does not need to be exported
 setAs(from = "DGEList",
@@ -69,7 +67,7 @@ setAs(from = "DGEList",
         return(to)
       })
 
-#' @describeIn as.DESeqDataSet Coerce \code{\link[edgeR]{DGEList-class}} objects to \code{\link[DESeq2]{DESeqDataSet-class}}.
+#' @describeIn as.DESeqDataSet Coerce \code{\link[edgeR]{DGEList-class}} objects to \code{\linkS4class{DESeqDataSet}}.
 #' @examples
 #' require("edgeR")
 #' 
@@ -83,13 +81,7 @@ setAs(from = "DGEList",
 #' @export
 as.DESeqDataSet.DGEList = function (x, ...) as(x, "DESeqDataSet")
 
-#setMethod ("as.DESeqDataSet", signature(x = "DGEList"), function(x) as(x, "DESeqDataSet") )
-
-#' DGEList Constructor Generic
-#' 
-#' Create a \code{\link[edgeR]{DGEList-class}} object 
-#' 
-#' @param counts numeric matrix of read counts
+#' @param counts read counts, either a numeric matrix or a \linkS4class{RangedSummarizedExperiment} object
 #' @param lib.size numeric vector giving the total count (sequence depth) for each library
 #' @param norm.factors numeric vector of normalization factors that modify the library sizes
 #' @param group vector or factor giving the experimental group/condition for each sample/library
@@ -97,7 +89,6 @@ as.DESeqDataSet.DGEList = function (x, ...) as(x, "DESeqDataSet")
 #' @param remove.zeros logical, whether to remove rows that have 0 total count 
 #' 
 #' @rdname DGEList
-#' @template author
 #' @export
 setMethod ("DGEList", signature(counts = "SummarizedExperiment0"), function(
   counts = SummarizedExperiment(),
