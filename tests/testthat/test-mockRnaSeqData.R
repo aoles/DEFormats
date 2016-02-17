@@ -27,7 +27,7 @@ test_that("the counts table is random and reproducible", {
   expect_false(identical(mockRnaSeqData(seed = 0L), mockRnaSeqData(seed = 1L)))
 })
 
-test_that("calling the function doesn't change the state of random number generator", {
+test_that("calling the function doesn't change the global state of the random number generator", {
   oldseed <- .GlobalEnv$.Random.seed
   mockRnaSeqData()
   expect_identical(oldseed, .GlobalEnv$.Random.seed)
