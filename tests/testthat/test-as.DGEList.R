@@ -3,7 +3,7 @@ library("DESeq2")
 context("Coerce objects to DGEList")
 
 rep = 3L
-se = mockRnaSeqData(output = "RangedSummarizedExperiment", rep = rep)
+se = simulateRnaSeqData(output = "RangedSummarizedExperiment", rep = rep)
 DF = colData(se)
 names(DF) = "group"
 DF$lib.size = 40000L

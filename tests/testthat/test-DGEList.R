@@ -2,7 +2,7 @@ library("DESeq2")
 
 context("DGEList Constructor Generic")
 
-se = mockRnaSeqData(output = "RangedSummarizedExperiment")
+se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
 mx = assay(se)
 
 test_that("the returned value is of class DGEList", {

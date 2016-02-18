@@ -51,7 +51,7 @@ setAs(from = "DESeqDataSet",
 #' @examples
 #' require("DESeq2")
 #' 
-#' se = mockRnaSeqData(output = "RangedSummarizedExperiment")
+#' se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
 #' se
 #' 
 #' dds = DESeqDataSet(se, design = ~ condition)   
@@ -87,7 +87,7 @@ setAs(from = "DGEList",
 #' @examples
 #' require("edgeR")
 #' 
-#' counts = mockRnaSeqData()
+#' counts = simulateRnaSeqData()
 #' group = rep(c("case", "control"), each = 3)
 #' 
 #' dge = DGEList(counts = counts, group = group)

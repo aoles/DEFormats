@@ -31,7 +31,7 @@ library(edgeR)
 and construct a sample RNA seq experiment data set.
 
 ```{r counts}
-counts = mockRnaSeqData()
+counts = simulateRnaSeqData()
 ```
 
 The `counts` object is a matrix with rows corresponding to genomic features and columns to samples:
@@ -85,8 +85,8 @@ identical(dds1, dds2)
 
 Let's create a sample expression data set of an RNA-seq experiment.
 
-```{r mockRnaSeqDataSE}
-se = mockRnaSeqData(output = "RangedSummarizedExperiment")
+```{r simulateRnaSeqDataSE}
+se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
 se
 ```
 

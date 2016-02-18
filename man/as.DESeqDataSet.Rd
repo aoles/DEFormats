@@ -27,7 +27,7 @@ Coerces an object to \linkS4class{DESeqDataSet}.
 \examples{
 require("edgeR")
 
-counts = mockRnaSeqData()
+counts = simulateRnaSeqData()
 group = rep(c("case", "control"), each = 3)
 
 dge = DGEList(counts = counts, group = group)

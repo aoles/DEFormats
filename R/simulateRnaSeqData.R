@@ -13,15 +13,15 @@
 #' @template author
 #' @examples
 #' ## count data
-#' mockRnaSeqData = mockRnaSeqData()
+#' simulateRnaSeqData = simulateRnaSeqData()
 #' 
 #' ## return an RangedSummarizedExperiment object
-#' mockRnaSeqDataSE = mockRnaSeqData(output = "RangedSummarizedExperiment")
+#' simulateRnaSeqDataSE = simulateRnaSeqData(output = "RangedSummarizedExperiment")
 #' 
 #' require("SummarizedExperiment")
-#' identical(mockRnaSeqData, assay(mockRnaSeqDataSE))
+#' identical(simulateRnaSeqData, assay(simulateRnaSeqDataSE))
 #' @export
-mockRnaSeqData = function(output = c("matrix", "RangedSummarizedExperiment"), rep = 3, conditions = c("Case", "Control"), seed = 0L, ...) {
+simulateRnaSeqData = function(output = c("matrix", "RangedSummarizedExperiment"), rep = 3, conditions = c("Case", "Control"), seed = 0L, ...) {
   output = match.arg(output)
   oldseed <- .GlobalEnv$.Random.seed
   on.exit({

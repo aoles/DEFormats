@@ -27,7 +27,7 @@ Coerces an object to \linkS4class{DGEList}.
 \examples{
 require("DESeq2")
 
-se = mockRnaSeqData(output = "RangedSummarizedExperiment")
+se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
 se
 
 dds = DESeqDataSet(se, design = ~ condition)   
