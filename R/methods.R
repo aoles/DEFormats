@@ -3,31 +3,42 @@ setAs(from = "DESeqDataSet",
       to = "DGEList",
       def = function(from) {
         
+        ## argument list to DGEList constructor
+        args = list()
+        
+        ## count matrix
+        args$counts = counts(from)
+        
         ## get annotation information from GRangesList
         genes = as.data.frame(rowRanges(from))
-        if ( nrow(genes) == 0 ) genes = NULL
+        if ( nrow(genes) == nrow(args$counts) ) 
+          args$genes = genes
         
         ## get sample description
         samples = as.data.frame(colData(from))
+        colnames = names(samples)
+        
+        add_arg = function(col, arg=col) {
+          if (col %in% colnames) {
+            args[[arg]] <<- samples[[col]]
+            colnames <<- colnames[colnames!=col]
+          }
+        }
+        
+        add_arg("lib.size")
+        
+        add_arg("norm.factors")
         
         ## group by last variable
         v = as.character(attr(terms(design(from)), "variables"))
         group = v[length(v)]
         
-        ## count matrix
-        counts = counts(from)
+        add_arg(group, "group")
         
-        to = DGEList(
-          counts = counts,
-          lib.size = if ( is.null( (ls = samples$lib.size) ) ) colSums(counts) else ls,
-          norm.factors = if ( is.null( (nf = samples$norm.factors) ) ) rep(1, ncol(counts)) else nf,
-          group = samples[[group]],
-          genes = genes
-          )
+        to = do.call("DGEList", args)
         
-        ## copy remaining sample metadata removing any duplicates
-        df = data.frame(to$samples, samples)    
-        to$samples = df[!duplicated(as.list(df))]
+        ## append any remaining sample metadata
+        to$samples = data.frame(to$samples, samples[colnames])
         
         ## copy normalization factors if present
         if ( !is.null( (nf = normalizationFactors(from)) ) )
