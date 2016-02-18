@@ -65,14 +65,19 @@ as.DGEList.DESeqDataSet = function (x, ...) as(x, "DGEList")
 setAs(from = "DGEList",
       to = "DESeqDataSet",      
       def = function(from) {
-        to = DESeqDataSetFromMatrix(
-          countData = from$counts,
-          colData = from$samples,
-          design = formula("~ group", env = globalenv())
-          )
+        args = list()
+        
+        args$countData = from$counts
+        args$colData = from$samples
+        args$design = design = formula("~ group", env = .GlobalEnv)
+        
+        if (!is.null((genes = from$genes))) 
+          args$rowRanges = GRanges(genes)
+        
+        to = do.call("DESeqDataSetFromMatrix", args)
         
         ## copy normalization factors if present
-        if ( !is.null( (nf = from$offset) ) )
+        if (!is.null( (nf = from$offset) ))
           normalizationFactors(to) = exp(nf)
         
         return(to)

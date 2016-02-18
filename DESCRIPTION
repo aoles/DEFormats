@@ -1,7 +1,7 @@
 Package: DEFormats
 Type: Package
 Title: Differential gene expression data formats converter
-Version: 0.0.8
+Version: 0.0.9
 Encoding: UTF-8
 Author: Andrzej Oleś
 Maintainer: Andrzej Oleś <andrzej.oles@embl.de>
@@ -13,6 +13,7 @@ Depends:
 Imports:
     DESeq2,
     edgeR,
+    GenomicRanges,
     SummarizedExperiment
 Suggests:
     BiocStyle (>= 1.3.10),
