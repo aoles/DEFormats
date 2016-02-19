@@ -16,11 +16,11 @@ test_that("the number of replicates is correct", {
   expect_equal(ncol(simulateRnaSeqData(rep = rep)), 2*rep)
 })
 
-test_that("columns are named after conditions", {
-  conditions = c("a", "b")
-  n = colnames(simulateRnaSeqData(conditions = conditions))
-  n = sub(" [0-9]+$", "",  n)
-  expect_identical(n , rep(conditions, each = length(n)/length(conditions)))
+test_that("the count matrix has desired dimensions", {
+  n = 100L
+  expect_equal(nrow(simulateRnaSeqData(n = n)), n)
+  m = 4L
+  expect_equal(ncol(simulateRnaSeqData(m = m)), m)
 })
 
 test_that("the counts table is random and reproducible", {

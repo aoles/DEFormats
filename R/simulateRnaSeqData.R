@@ -5,23 +5,23 @@
 #' The count table is generated using the \code{\link[DESeq2]{makeExampleDESeqDataSet}} method from the \pkg{DESeq2} package.
 #' 
 #' @param output output type
-#' @param rep number of replicates for each condition
+#' @param n number of genes
+#' @param m number of samples
 #' @param conditions condition names
 #' @param seed a single integer value specifying the random number generator seed
 #' @param ... arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}
 #' @return Depending on the \code{output} setting a matrix or an \code{\linkS4class{RangedSummarizedExperiment}} object.
 #' @template author
 #' @examples
-#' ## count data
-#' simulateRnaSeqData = simulateRnaSeqData()
+#' ## count data matrix
+#' mx = simulateRnaSeqData()
+#' head(mx)
 #' 
 #' ## return an RangedSummarizedExperiment object
-#' simulateRnaSeqDataSE = simulateRnaSeqData(output = "RangedSummarizedExperiment")
-#' 
-#' require("SummarizedExperiment")
-#' identical(simulateRnaSeqData, assay(simulateRnaSeqDataSE))
+#' se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
+#' se
 #' @export
-simulateRnaSeqData = function(output = c("matrix", "RangedSummarizedExperiment"), rep = 3, conditions = c("Case", "Control"), seed = 0L, ...) {
+simulateRnaSeqData = function(output = c("matrix", "RangedSummarizedExperiment"), n = 1000, m = 6, seed = 0L, ...) {
   output = match.arg(output)
   oldseed <- .GlobalEnv$.Random.seed
   on.exit({
@@ -32,8 +32,7 @@ simulateRnaSeqData = function(output = c("matrix", "RangedSummarizedExperiment")
     })
   set.seed(seed)
   
-  dds = makeExampleDESeqDataSet(m = 2 * rep, ...)
-  colnames(dds) = paste(rep(conditions, each = rep), rep(seq_len(rep), 2))
+  dds = makeExampleDESeqDataSet(n = n, m = m, ...)
   
   switch (output, 
           matrix = counts(dds), 

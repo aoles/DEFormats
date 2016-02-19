@@ -5,18 +5,20 @@
 \title{Example counts table of RNA-seq data}
 \usage{
 simulateRnaSeqData(output = c("matrix", "RangedSummarizedExperiment"),
-  rep = 3, conditions = c("Case", "Control"), seed = 0L, ...)
+  n = 1000, m = 6, seed = 0L, ...)
 }
 \arguments{
 \item{output}{output type}
 
-\item{rep}{number of replicates for each condition}
+\item{n}{number of genes}
 
-\item{conditions}{condition names}
+\item{m}{number of samples}
 
 \item{seed}{a single integer value specifying the random number generator seed}
 
 \item{...}{arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}}
+
+\item{conditions}{condition names}
 }
 \value{
 Depending on the \code{output} setting a matrix or an \code{\linkS4class{RangedSummarizedExperiment}} object.
@@ -28,14 +30,13 @@ Simulated expression data of an RNA-seq experiment.
 The count table is generated using the \code{\link[DESeq2]{makeExampleDESeqDataSet}} method from the \pkg{DESeq2} package.
 }
 \examples{
-## count data
-simulateRnaSeqData = simulateRnaSeqData()
+## count data matrix
+mx = simulateRnaSeqData()
+head(mx)
 
 ## return an RangedSummarizedExperiment object
-simulateRnaSeqDataSE = simulateRnaSeqData(output = "RangedSummarizedExperiment")
-
-require("SummarizedExperiment")
-identical(simulateRnaSeqData, assay(simulateRnaSeqDataSE))
+se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
+se
 }
 \author{
 Andrzej Oleś <\email{andrzej.oles@embl.de}>, 2016
