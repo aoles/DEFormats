@@ -14,18 +14,22 @@ simulateRnaSeqData(output = c("matrix", "RangedSummarizedExperiment"),
 
 \item{m}{number of samples}
 
-\item{seed}{a single integer value specifying the random number generator seed}
+\item{seed}{a single integer value specifying the random number generator
+seed}
 
 \item{...}{arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}}
 }
 \value{
-Depending on the \code{output} setting a matrix or an \code{\linkS4class{RangedSummarizedExperiment}} object.
+Depending on the \code{output} setting a matrix or an
+  \code{\linkS4class{RangedSummarizedExperiment}} object.
 }
 \description{
 Simulated expression data of an RNA-seq experiment.
 }
 \details{
-The count table is generated using the \code{\link[DESeq2]{makeExampleDESeqDataSet}} method from the \pkg{DESeq2} package.
+The count table is generated using the
+\code{\link[DESeq2]{makeExampleDESeqDataSet}} method from the \pkg{DESeq2}
+package.
 }
 \examples{
 ## count data matrix

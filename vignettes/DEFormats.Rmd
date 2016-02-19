@@ -11,14 +11,19 @@ BiocStyle::markdown()
 
 # Differential gene expression data formats converter
 
-`r Rpackage("DEFormats")` facilitates data conversion between most widely used tools for differential gene expression analysis.
-Currently, `r Biocpkg("DESeq2")` and `r Biocpkg("edgeR")` are supported.
+`r Rpackage("DEFormats")` facilitates data conversion between most widely used 
+tools for differential gene expression analysis. Currently, 
+`r Biocpkg("DESeq2")` and `r Biocpkg("edgeR")` are supported.
 
-We provide data conversion functions of the form `as.<class>(object)`, where `<class>` is the name of the class to which `object` should be coerced. Additionally, we define constructors for common count data input formats, e.g. *SummarizedExperiment* objects.
+We provide data conversion functions of the form `as.<class>(object)`, where 
+`<class>` is the name of the class to which `object` should be coerced. 
+Additionally, we define constructors for common count data input formats, e.g. 
+*SummarizedExperiment* objects.
 
 ## Convert between *DESeqDataSet* and *DGEList* objects
 
-The example below demonstrates how to shuttle data between *DESeqDataSet* and *DGEList* containers.
+The example below demonstrates how to shuttle data between *DESeqDataSet* and 
+*DGEList* containers.
 
 First, we load the required libraries 
 
@@ -34,7 +39,8 @@ and construct a sample RNA seq experiment data set.
 counts = simulateRnaSeqData()
 ```
 
-The `counts` object is a matrix with rows corresponding to genomic features and columns to samples:
+The `counts` object is a matrix with rows corresponding to genomic features and 
+columns to samples:
 
 ```{r headcounts}
 head(counts)
@@ -60,7 +66,8 @@ dds = as.DESeqDataSet(dge)
 dds
 ```
 
-To check that the coercions conserve the data we convert `dds` back to a `DGEList` and compare it with the original `dge` object.
+To check that the coercions conserve the data we convert `dds` back to a 
+`DGEList` and compare it with the original `dge` object.
 
 ```{r dgedds}
 dge2 = as.DGEList(dds)
@@ -68,13 +75,15 @@ dge2 = as.DGEList(dds)
 identical(dge, dge2)
 ```
 
-Note that because of the use of reference classes in `DESeqDataSet` objects `identical` will return `FALSE` for any two instances of `DESeqDataSet` class, even for ones constructed from the same input:
+Note that because of the use of reference classes in `DESeqDataSet` objects 
+`identical` will return `FALSE` for any two instances of `DESeqDataSet` class, 
+even for ones constructed from the same input:
 
 ```{r identicalDDS}
 library(DESeq2)
 
-dds1 = DESeqDataSetFromMatrix(counts, data.frame(condition = group), ~ condition)
-dds2 = DESeqDataSetFromMatrix(counts, data.frame(condition = group), ~ condition)
+dds1 = DESeqDataSetFromMatrix(counts, data.frame(condition=group), ~ condition)
+dds2 = DESeqDataSetFromMatrix(counts, data.frame(condition=group), ~ condition)
 
 identical(dds1, dds2)
 ```
@@ -96,7 +105,9 @@ Similarly as for the *DESeqDataSet* objects in `r Biocpkg("DESeq2")`,
 dds = DESeqDataSet(se, ~ condition)
 ```
 
-we can directly use the generic *DGEList* constructor defined in `r Rpackage("DEFormats")` to create a corresponding object for the `r Biocpkg("edgeR")` pipeline:
+we can directly use the generic *DGEList* constructor defined in 
+`r Rpackage("DEFormats")` to create a corresponding object for the 
+`r Biocpkg("edgeR")` pipeline:
 
 ```{r dgeSE}
 dge = DEFormats::DGEList(se, group = GenomicRanges::colData(se)$condition)

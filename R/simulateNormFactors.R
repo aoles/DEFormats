@@ -1,10 +1,12 @@
 #' Simulate Normalization Factors
 #' 
-#' Simulate gene-specific normalization factors for each sample of an RNA-seq experiment.
+#' Simulate gene-specific normalization factors for each sample of an RNA-seq
+#' experiment.
 #' 
 #' @inheritParams simulateRnaSeqData
 #' @param ... arguments passed to \code{\link[base]{matrix}}
-#' @return A matrix with \code{n} rows and \code{m} columns containing the normalization factors.
+#' @return A matrix with \code{n} rows and \code{m} columns containing the
+#'   normalization factors.
 #' @seealso simulateRnaSeqData
 #' @template author
 #' @examples

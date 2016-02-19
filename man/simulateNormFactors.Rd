@@ -11,15 +11,18 @@ simulateNormFactors(n = 1000L, m = 6L, seed = 0L, ...)
 
 \item{m}{number of samples}
 
-\item{seed}{a single integer value specifying the random number generator seed}
+\item{seed}{a single integer value specifying the random number generator
+seed}
 
 \item{...}{arguments passed to \code{\link[base]{matrix}}}
 }
 \value{
-A matrix with \code{n} rows and \code{m} columns containing the normalization factors.
+A matrix with \code{n} rows and \code{m} columns containing the
+  normalization factors.
 }
 \description{
-Simulate gene-specific normalization factors for each sample of an RNA-seq experiment.
+Simulate gene-specific normalization factors for each sample of an RNA-seq
+experiment.
 }
 \examples{
 require("DESeq2")

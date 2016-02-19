@@ -16,13 +16,17 @@ DGEList(counts = matrix(0, 0, 0), lib.size = colSums(counts),
   remove.zeros = FALSE)
 }
 \arguments{
-\item{counts}{read counts, either a numeric matrix or a \linkS4class{RangedSummarizedExperiment} object}
+\item{counts}{read counts, either a numeric matrix or a
+\linkS4class{RangedSummarizedExperiment} object}
 
-\item{lib.size}{numeric vector giving the total count (sequence depth) for each library}
+\item{lib.size}{numeric vector giving the total count (sequence depth) for
+each library}
 
-\item{norm.factors}{numeric vector of normalization factors that modify the library sizes}
+\item{norm.factors}{numeric vector of normalization factors that modify the
+library sizes}
 
-\item{group}{vector or factor giving the experimental group/condition for each sample/library}
+\item{group}{vector or factor giving the experimental group/condition for
+each sample/library}
 
 \item{genes}{data frame containing annotation information for each gene}
 
