@@ -4,8 +4,8 @@
 #' 
 #' @param n number of genes
 #' @param m number of samples
-#' @param seed random number generator seed
-#' @return A \code{n} times \code{m} matrix containing the normalization factors.
+#' @inheritParams simulateRnaSeqData
+#' @return A matrix with \code{n} rows and \code{m} columns containing the normalization factors.
 #' @template author
 #' @examples
 #' require("DESeq2")

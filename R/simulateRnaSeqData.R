@@ -7,7 +7,7 @@
 #' @param output output type
 #' @param rep number of replicates for each condition
 #' @param conditions condition names
-#' @param seed random number generator seed
+#' @param seed a single integer value specifying the random number generator seed
 #' @param ... arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}
 #' @return Depending on the \code{output} setting a matrix or an \code{\linkS4class{RangedSummarizedExperiment}} object.
 #' @template author

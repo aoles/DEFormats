@@ -14,7 +14,7 @@ simulateRnaSeqData(output = c("matrix", "RangedSummarizedExperiment"),
 
 \item{conditions}{condition names}
 
-\item{seed}{random number generator seed}
+\item{seed}{a single integer value specifying the random number generator seed}
 
 \item{...}{arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}}
 }
