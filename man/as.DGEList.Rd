@@ -38,4 +38,7 @@ as.DGEList(dds)
 \author{
 Andrzej Oleś <\email{andrzej.oles@embl.de}>, 2016
 }
+\seealso{
+\code{\link{as.DESeqDataSet}}
+}
 

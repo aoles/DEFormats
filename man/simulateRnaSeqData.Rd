@@ -17,8 +17,6 @@ simulateRnaSeqData(output = c("matrix", "RangedSummarizedExperiment"),
 \item{seed}{a single integer value specifying the random number generator seed}
 
 \item{...}{arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}}
-
-\item{conditions}{condition names}
 }
 \value{
 Depending on the \code{output} setting a matrix or an \code{\linkS4class{RangedSummarizedExperiment}} object.
@@ -40,5 +38,8 @@ se
 }
 \author{
 Andrzej Oleś <\email{andrzej.oles@embl.de}>, 2016
+}
+\seealso{
+simulateNormFactors
 }
 

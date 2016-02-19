@@ -7,10 +7,10 @@
 #' @param output output type
 #' @param n number of genes
 #' @param m number of samples
-#' @param conditions condition names
 #' @param seed a single integer value specifying the random number generator seed
 #' @param ... arguments passed to \code{\link[DESeq2]{makeExampleDESeqDataSet}}
 #' @return Depending on the \code{output} setting a matrix or an \code{\linkS4class{RangedSummarizedExperiment}} object.
+#' @seealso simulateNormFactors
 #' @template author
 #' @examples
 #' ## count data matrix

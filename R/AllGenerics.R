@@ -5,10 +5,10 @@
 #' @param x an \R object
 #' @param ... additional arguments to be passed to methods
 #' @return A \code{\linkS4class{DGEList}} object.
+#' @seealso \code{\link{as.DESeqDataSet}}
 #' @template author
 #' @export
 as.DGEList = function (x, ...) UseMethod("as.DGEList")
-#setGeneric ("as.DGEList", function (x, ...) standardGeneric("as.DGEList") )
 
 #' Convert to DESeqDataSet
 #' 
@@ -16,10 +16,10 @@ as.DGEList = function (x, ...) UseMethod("as.DGEList")
 #' 
 #' @inheritParams as.DGEList
 #' @return A \code{\linkS4class{DESeqDataSet}} object
+#' @seealso \code{\link{as.DGEList}}
 #' @template author
 #' @export
 as.DESeqDataSet = function (x, ...) UseMethod("as.DESeqDataSet")
-#setGeneric ("as.DESeqDataSet", function (x, ...) standardGeneric("as.DESeqDataSet")
 
 #' DGEList Constructor Generic
 #'
