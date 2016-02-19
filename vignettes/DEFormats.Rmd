@@ -38,7 +38,7 @@ The `counts` object is a matrix with rows corresponding to genomic features and 
 
 ```{r headcounts}
 head(counts)
-````
+```
 
 Furthermore, we need to specify sample grouping
 

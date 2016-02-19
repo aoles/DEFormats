@@ -23,6 +23,10 @@
 #' @export
 simulateRnaSeqData = function(output = c("matrix", "RangedSummarizedExperiment"), n = 1000, m = 6, seed = 0L, ...) {
   output = match.arg(output)
+  qassert(n, "X1[1,)")
+  qassert(m, "X1[1,)")
+  qassert(seed, "X1")
+  
   oldseed <- .GlobalEnv$.Random.seed
   on.exit({
     if (!is.null(oldseed)) 

@@ -12,6 +12,7 @@
 #' @template author
 #' @docType package
 #' @name DEFormats
+#' @importFrom checkmate qassert
 #' @importFrom edgeR DGEList
 #' @importClassesFrom edgeR DGEList
 #' @importFrom DESeq2 DESeqDataSetFromMatrix normalizationFactors counts design normalizationFactors<- makeExampleDESeqDataSet

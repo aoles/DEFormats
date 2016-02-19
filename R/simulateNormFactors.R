@@ -18,6 +18,10 @@
 #' normalizationFactors(dds) = simulateNormFactors()
 #' @export
 simulateNormFactors = function(n = 1000L, m = 6L, seed = 0L, ...) {
+  qassert(n, "X1[1,)")
+  qassert(m, "X1[1,)")
+  qassert(seed, "X1")
+  
   oldseed <- .GlobalEnv$.Random.seed
   on.exit({
     if (!is.null(oldseed)) 
