@@ -1,4 +1,5 @@
 library("DESeq2")
+source("utils.R")
 
 context("Simulate normalization factors")
 
@@ -14,11 +15,9 @@ test_that("output is a matrix of desired dimensions", {
 
 test_that("the counts table is random and reproducible", {
   expect_identical(simulateNormFactors(), simulateNormFactors())
-  expect_false(identical(simulateNormFactors(seed = 0L), simulateNormFactors(seed = 1L)))
+  expect_different(simulateNormFactors(seed = 0L), simulateNormFactors(seed = 1L))
 })
 
 test_that("calling the function doesn't change the global state of the random number generator", {
-  oldseed <- .GlobalEnv$.Random.seed
-  simulateNormFactors()
-  expect_identical(oldseed, .GlobalEnv$.Random.seed)
+  expect_rng_unchanged(simulateNormFactors)
 })

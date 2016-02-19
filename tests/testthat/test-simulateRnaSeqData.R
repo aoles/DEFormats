@@ -1,4 +1,5 @@
 library("DESeq2")
+source("utils.R")
 
 context("Simulate RNA-seq data")
 
@@ -24,11 +25,9 @@ test_that("columns are named after conditions", {
 
 test_that("the counts table is random and reproducible", {
   expect_identical(simulateRnaSeqData(), simulateRnaSeqData())
-  expect_false(identical(simulateRnaSeqData(seed = 0L), simulateRnaSeqData(seed = 1L)))
+  expect_different(simulateRnaSeqData(seed = 0L), simulateRnaSeqData(seed = 1L))
 })
 
 test_that("calling the function doesn't change the global state of the random number generator", {
-  oldseed <- .GlobalEnv$.Random.seed
-  simulateRnaSeqData()
-  expect_identical(oldseed, .GlobalEnv$.Random.seed)
+  expect_rng_unchanged(simulateRnaSeqData)
 })
