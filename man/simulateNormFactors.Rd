@@ -4,7 +4,7 @@
 \alias{simulateNormFactors}
 \title{Simulate Normalization Factors}
 \usage{
-simulateNormFactors(n = 1000L, m = 6L, seed = 0L)
+simulateNormFactors(n = 1000L, m = 6L, seed = 0L, ...)
 }
 \arguments{
 \item{n}{number of genes}
@@ -12,6 +12,8 @@ simulateNormFactors(n = 1000L, m = 6L, seed = 0L)
 \item{m}{number of samples}
 
 \item{seed}{a single integer value specifying the random number generator seed}
+
+\item{...}{arguments passed to \code{\link[base]{matrix}}}
 }
 \value{
 A matrix with \code{n} rows and \code{m} columns containing the normalization factors.
@@ -31,5 +33,8 @@ normalizationFactors(dds) = simulateNormFactors()
 }
 \author{
 Andrzej Oleś <\email{andrzej.oles@embl.de}>, 2016
+}
+\seealso{
+simulateRnaSeqData
 }
 

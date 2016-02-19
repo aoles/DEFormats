@@ -3,12 +3,14 @@ source("utils.R")
 
 context("Simulate normalization factors")
 
-test_that("output is a matrix of desired dimensions", {
+test_that("output is a matrix of desired dimensions and dimnames", {
   expect_is(simulateNormFactors(), "matrix")
   n = 100L
   expect_equal(nrow(simulateNormFactors(n = n)), n)
   m = 4L
   expect_equal(ncol(simulateNormFactors(m = m)), m)
+  dimnames = list(as.character(1:n), as.character(1:m))
+  expect_equal(dimnames(simulateNormFactors(n = n, m = m, dimnames = dimnames)), dimnames)
 })
 
 test_that("the counts table is random and reproducible", {
