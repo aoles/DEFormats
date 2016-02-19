@@ -3,8 +3,6 @@ source("utils.R")
 
 context("Simulate normalization factors")
 
-nf = simulateNormFactors()
-
 test_that("output is a matrix of desired dimensions", {
   expect_is(simulateNormFactors(), "matrix")
   n = 100L

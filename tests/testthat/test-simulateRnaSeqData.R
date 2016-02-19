@@ -3,17 +3,9 @@ source("utils.R")
 
 context("Simulate RNA-seq data")
 
-se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
-dds = DESeqDataSet(se, design = ~ condition)
-
 test_that("output is of desired type", {
-  expect_is(simulateRnaSeqData(output = "matrix"), "matrix")
-  expect_is(simulateRnaSeqData(output = "RangedSummarizedExperiment"), "RangedSummarizedExperiment")
-})
-
-test_that("the number of replicates is correct", {
-  rep = 5L
-  expect_equal(ncol(simulateRnaSeqData(rep = rep)), 2*rep)
+  for(type in c("matrix", "RangedSummarizedExperiment"))
+    expect_is(simulateRnaSeqData(output = type), type)
 })
 
 test_that("the count matrix has desired dimensions", {

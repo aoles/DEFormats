@@ -2,22 +2,23 @@ library("DESeq2")
 
 context("Coerce objects to DGEList")
 
-rep = 3L
-se = simulateRnaSeqData(output = "RangedSummarizedExperiment", rep = rep)
+## construct DESeqDataSet object
+se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
 DF = colData(se)
-names(DF) = "group"
+DF$group = factor(c("a", "b"))
 DF$lib.size = 40000L
 DF$norm.factors = 1:2
-DF$condition = rep(factor(c("a", "b")), rep)
-colData(se) = DF
-
+colData(se) = DF[c(2L:ncol(DF), 1L)] # swap columns to ensure reproducibility with DGEList 
 dds = DESeqDataSet(se, design = ~ condition + group)
+
+## add normalization Factors
+normalizationFactors(dds) = simulateNormFactors()
+
+## coerce to DGEList
 dge = as.DGEList(dds)
-dgedds = as.DESeqDataSet(dge)
 
 test_that("result is of type DGEList", {
   expect_is(dge, "DGEList")
-  expect_is(as(dds, "DGEList"), "DGEList")
 })
 
 test_that("elements from DESeqDataSet are carried over to DGEList", {
@@ -30,8 +31,9 @@ test_that("elements from DESeqDataSet are carried over to DGEList", {
 })
 
 test_that("converting to DGEList and back to DESeqDataSet restores the original object", {
+  dgedds = as.DESeqDataSet(dge)
   expect_identical(counts(dds), counts(dgedds))
   expect_identical(colData(dds), colData(dgedds))
   expect_identical(rowRanges(dds), rowRanges(dgedds))
-  #expect_identical(normalizationFactors(dge), normalizationFactors(dgedds))
+  expect_identical(normalizationFactors(dds), normalizationFactors(dgedds))
 })
