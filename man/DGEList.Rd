@@ -28,8 +28,17 @@ DGEList(counts = matrix(0, 0, 0), lib.size = colSums(counts),
 
 \item{remove.zeros}{logical, whether to remove rows that have 0 total count}
 }
+\value{
+A \linkS4class{DGEList} object.
+}
 \description{
 Creates a \linkS4class{DGEList} object.
+}
+\examples{
+se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
+
+## Initialize a DGEList from a RangedSummarizedExperiment object
+DGEList(se)
 }
 \author{
 Andrzej Oleś <\email{andrzej.oles@embl.de}>, 2016

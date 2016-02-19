@@ -103,7 +103,11 @@ as.DESeqDataSet.DGEList = function (x, ...) as(x, "DESeqDataSet")
 #' @param group vector or factor giving the experimental group/condition for each sample/library
 #' @param genes data frame containing annotation information for each gene
 #' @param remove.zeros logical, whether to remove rows that have 0 total count 
+#' @examples 
+#' se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
 #' 
+#' ## Initialize a DGEList from a RangedSummarizedExperiment object
+#' DGEList(se)
 #' @rdname DGEList
 #' @export
 setMethod ("DGEList", signature(counts = "RangedSummarizedExperiment"),

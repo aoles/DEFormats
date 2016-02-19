@@ -25,6 +25,7 @@ as.DESeqDataSet = function (x, ...) UseMethod("as.DESeqDataSet")
 #'
 #' Creates a \linkS4class{DGEList} object.
 #' 
+#' @return A \linkS4class{DGEList} object.
 #' @template author
 #' @export
 setGeneric("DGEList", valueClass = "DGEList")
