@@ -17,7 +17,7 @@ abstract: >
   offering constructors for common count data input formats, e.g. 
   *SummarizedExperiment* objects.
 output: 
-  BiocStyle:::pdf_document2
+  BiocStyle::html_document
 ---
 
 # Convert between *DESeqDataSet* and *DGEList* objects
