@@ -122,3 +122,9 @@ corresponding object in the `r Biocpkg("edgeR")` pipeline:
 dge = DGEList(se, group = colData(se)$condition)
 dge
 ```
+
+# Session info
+
+```{r sessionInfo}
+sessionInfo()
+```
