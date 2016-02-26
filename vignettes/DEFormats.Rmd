@@ -8,11 +8,11 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 abstract: >
-  `r Rpackage("DEFormats")` facilitates data conversion between most widely used 
-  tools for differential gene expression analysis; currently, the Bioconductor 
-  packages `r Biocpkg("DESeq2")` and `r Biocpkg("edgeR")` are supported.
-  It provides converter functions of the form `as.<class>(object)`, where 
-  `<class>` is the name of the class to which `object` should be coerced. 
+  `r Rpackage("DEFormats")` facilitates data conversion between most widely 
+  used tools for differential gene expression analysis; currently, the 
+  Bioconductor packages `r Biocpkg("DESeq2")` and `r Biocpkg("edgeR")` are 
+  supported.  It provides converter functions of the form `as.<class>(object)`, 
+  where `<class>` is the name of the class to which `object` should be coerced. 
   Additionally, `r Rpackage("DEFormats")` extends the original packages by 
   offering constructors for common count data input formats, e.g. 
   *SummarizedExperiment* objects.
@@ -40,8 +40,8 @@ the function provided by `r Rpackage("DEFormats")` to generate a counts table.
 counts = simulateRnaSeqData()
 ```
 
-The resulting object is a matrix with rows corresponding to genomic features and 
-columns to samples.
+The resulting object is a matrix with rows corresponding to genomic features 
+and columns to samples.
 
 ```{r headcounts}
 head(counts)
@@ -113,7 +113,7 @@ Please note the additional `genes` element on the `dge` list.
 
 # Creating *DGEList* objects from *SummarizedExperiment*
 
-Similarly as for the *DESeqDataSet* constructor from `r Biocpkg("DESeq2")`,
+Similarly as for the *DESeqDataSet* constructor from `r Biocpkg("DESeq2")`, 
 we can directly use the generic *DGEList* constructor defined in 
 `r Rpackage("DEFormats")` on `RangedSummarizedExperiment` objects to create a 
 corresponding object in the `r Biocpkg("edgeR")` pipeline:
