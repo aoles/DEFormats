@@ -20,6 +20,7 @@
 #' @importClassesFrom DESeq2 DESeqDataSet
 #' @importFrom SummarizedExperiment rowRanges colData assay as.data.frame
 #'   SummarizedExperiment
-#' @importFrom methods setAs setGeneric setMethod
 #' @importFrom GenomicRanges GRanges
+#' @importFrom methods setAs setGeneric setMethod
+#' @importFrom stats formula runif terms
 NULL
