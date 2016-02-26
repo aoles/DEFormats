@@ -7,13 +7,13 @@
 \title{DGEList Constructor Generic}
 \usage{
 DGEList(counts = matrix(0, 0, 0), lib.size = colSums(counts),
-  norm.factors = rep(1, ncol(counts)), group = rep(1, ncol(counts)),
+  norm.factors = rep(1, ncol(counts)), samples = NULL, group = NULL,
   genes = NULL, remove.zeros = FALSE)
 
 \S4method{DGEList}{RangedSummarizedExperiment}(counts = matrix(0, 0, 0),
   lib.size = colSums(assay(counts)), norm.factors = rep(1, ncol(counts)),
-  group = rep(1, ncol(counts)), genes = as.data.frame(rowRanges(counts)),
-  remove.zeros = FALSE)
+  samples = colData(counts), group = NULL,
+  genes = as.data.frame(rowRanges(counts)), remove.zeros = FALSE)
 }
 \arguments{
 \item{counts}{read counts, either a numeric matrix or a
@@ -24,6 +24,8 @@ each library}
 
 \item{norm.factors}{numeric vector of normalization factors that modify the
 library sizes}
+
+\item{samples}{data frame containing information for each sample}
 
 \item{group}{vector or factor giving the experimental group/condition for
 each sample/library}

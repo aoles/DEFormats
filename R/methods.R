@@ -35,10 +35,10 @@ setAs(from = "DESeqDataSet",
         
         add_arg(group, "group")
         
-        to = do.call("DGEList", args)
+        ## any remaining sample metadata
+        args$samples = samples[colnames]
         
-        ## append any remaining sample metadata
-        to$samples = data.frame(to$samples, samples[colnames])
+        to = do.call("DGEList", args)
         
         ## copy normalization factors if present
         if ( !is.null( (nf = normalizationFactors(from)) ) )
@@ -105,6 +105,7 @@ as.DESeqDataSet.DGEList = function (x, ...) as(x, "DESeqDataSet")
 #'   each library
 #' @param norm.factors numeric vector of normalization factors that modify the
 #'   library sizes
+#' @param samples data frame containing information for each sample
 #' @param group vector or factor giving the experimental group/condition for
 #'   each sample/library
 #' @param genes data frame containing annotation information for each gene
@@ -120,20 +121,16 @@ setMethod ("DGEList", signature(counts = "RangedSummarizedExperiment"),
   function(counts,
            lib.size = colSums(assay(counts)),
            norm.factors = rep(1, ncol(counts)),
-           group = rep(1, ncol(counts)),
+           samples = colData(counts),
+           group = NULL,
            genes = as.data.frame(rowRanges(counts)),
            remove.zeros = FALSE) {
-    dge = DGEList(assay(counts),
-                  lib.size = lib.size,
-                  norm.factors = norm.factors,
-                  group = group,
-                  genes = genes,
-                  remove.zeros = remove.zeros)
-    
-    ## copy remaining sample metadata removing any duplicates
-    df = data.frame(dge$samples, colData(counts))
-    dge$samples = df[!duplicated(as.list(df))]
-    
-    dge
+      DGEList(assay(counts),
+              lib.size = lib.size,
+              norm.factors = norm.factors,
+              samples = samples,
+              group = group,
+              genes = genes,
+              remove.zeros = remove.zeros)
   }
 )

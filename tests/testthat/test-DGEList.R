@@ -12,8 +12,8 @@ test_that("the returned value is of class DGEList", {
 })
 
 test_that("the resulting objects contain the same information", {
-  condition = colData(se)$condition
+  samples = colData(se)
   genes = as.data.frame(rowRanges(se))
-  expect_identical(DGEList(se, group = condition),
-                   DGEList(mx, group = condition, genes = genes))
+  expect_identical(DGEList(se),
+                   DGEList(mx, samples = samples, genes = genes))
 })
