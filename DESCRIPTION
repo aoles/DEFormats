@@ -1,10 +1,10 @@
 Package: DEFormats
 Type: Package
 Title: Differential gene expression data formats converter
-Version: 0.99.0
+Version: 0.99.1
 Encoding: UTF-8
 Author: Andrzej Oleś
-Maintainer: Andrzej Oleś <andrzej.oles@embl.de>
+Maintainer: Andrzej Oleś <andrzej.oles@gmail.com>
 URL: https://github.com/aoles/DEFormats
 BugReports: https://github.com/aoles/DEFormats/issues
 Description: Covert between different data formats used by differential gene 
@@ -19,7 +19,7 @@ Imports:
     stats,
     SummarizedExperiment
 Suggests:
-    BiocStyle (>= 1.3.10),
+    BiocStyle (>= 1.8.0),
     knitr,
     testthat
 VignetteBuilder: knitr
