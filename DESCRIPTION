@@ -1,7 +1,7 @@
 Package: DEFormats
 Type: Package
 Title: Differential gene expression data formats converter
-Version: 0.99.2
+Version: 0.99.3
 Encoding: UTF-8
 Author: Andrzej Oleś
 Maintainer: Andrzej Oleś <andrzej.oles@embl.de>
@@ -21,6 +21,7 @@ Imports:
 Suggests:
     BiocStyle (>= 1.8.0),
     knitr,
+    rmarkdown,
     testthat
 VignetteBuilder: knitr
 biocViews: DifferentialExpression, GeneExpression, RNASeq, Sequencing,
