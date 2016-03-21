@@ -1,7 +1,7 @@
 Package: DEFormats
 Type: Package
 Title: Differential gene expression data formats converter
-Version: 0.99.4
+Version: 0.99.5
 Encoding: UTF-8
 Author: Andrzej Oleś
 Maintainer: Andrzej Oleś <andrzej.oles@gmail.com>
@@ -10,6 +10,7 @@ BugReports: https://github.com/aoles/DEFormats/issues
 Description: Covert between different data formats used by differential gene 
   expression analysis tools.
 License: GPL-3
+Depends: R (>= 3.3)
 Imports:
     checkmate,
     DESeq2,
