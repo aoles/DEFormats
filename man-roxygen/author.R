@@ -1,0 +1,1 @@
+#' @author Andrzej Oleś <\email{andrzej.oles@@embl.de}>, 2016

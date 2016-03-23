@@ -1,0 +1,136 @@
+---
+title: "Differential gene expression data formats converter"
+author: "Andrzej Oleś"
+date: "`r doc_date()`"
+package: "`r pkg_ver('DEFormats')`"
+vignette: >
+  %\VignetteIndexEntry{Differential gene expression data formats converter}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+abstract: >
+  `r Rpackage("DEFormats")` facilitates data conversion between the most widely 
+  used tools for differential gene expression analysis; currently, the 
+  Bioconductor packages `r Biocpkg("DESeq2")` and `r Biocpkg("edgeR")` are 
+  supported.  It provides converter functions of the form `as.<class>(object)`, 
+  where `<class>` is the name of the class to which `object` should be coerced. 
+  Additionally, `r Rpackage("DEFormats")` extends the original packages by 
+  offering constructors for common count data input formats, e.g. 
+  *SummarizedExperiment* objects.
+output: 
+  BiocStyle::html_document
+---
+
+# Convert between *DESeqDataSet* and *DGEList* objects
+
+The following examples demonstrate how to shuttle data between *DESeqDataSet* 
+and *DGEList* containers. Before we start, let's first load the required 
+packages.
+
+```{r library, message=FALSE}
+library(DESeq2)
+library(edgeR)
+library(DEFormats)
+```
+
+## *DGEList* to *DESeqDataSet*
+
+We will illustrate the functionality of the package on a mock expression 
+data set of an RNA-seq experiment. The sample counts table can be generated 
+using the function provided by `r Rpackage("DEFormats")`:
+
+```{r counts}
+counts = simulateRnaSeqData()
+```
+
+The resulting object is a matrix with rows corresponding to genomic features 
+and columns to samples.
+
+```{r headcounts}
+head(counts)
+```
+
+In order to construct a `DGEList` object we need to provide, apart from the 
+counts matrix, the sample grouping.
+
+```{r dge}
+group = rep(c("A", "B"), each = 3)
+
+dge = DGEList(counts, group = group)
+dge
+```
+
+A `DGEList` object can be easily converted to a `DESeqDataSet` object with the 
+help of the function `as.DESeqDataSet`.
+
+```{r dds}
+dds = as.DESeqDataSet(dge)
+dds
+```
+
+Just to make sure that the coercions conserve the data and metadata, we now 
+convert `dds` back to a `DGEList` and compare the result to the original `dge` 
+object.
+
+```{r dgedds}
+identical(dge, as.DGEList(dds))
+```
+
+Note that because of the use of reference classes in the `SummarizedExperiment`
+class which `DESeqDataSet` extends, `identical` will return `FALSE` for any two
+`DESeqDataSet` instances, even for ones constructed from the same input:
+
+```{r identicalDDS}
+dds1 = DESeqDataSetFromMatrix(counts, data.frame(condition=group), ~ condition)
+dds2 = DESeqDataSetFromMatrix(counts, data.frame(condition=group), ~ condition)
+
+identical(dds1, dds2)
+```
+
+## *DESeqDataSet* to *DGEList*
+
+Instead of a count matrix, `simulateRnaSeqData` can also return an 
+annotated `RangedSummarizedExperiment` object. The advantage of such an object 
+is that, apart from the counts matrix stored in the `assay` slot, it also 
+contains sample description in `colData`, and gene information stored in 
+`rowRanges` as a `GRanges` object.
+
+```{r se}
+se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
+se
+```
+
+The `se` object can be readily used to construct a `DESeqDataSet` object,
+
+```{r dds_se}
+dds = DESeqDataSet(se, design = ~ condition)
+```
+
+which can be converted to a `DGEList` using the familiar method.
+
+```{r dgedds2}
+dge = as.DGEList(dds)
+dge
+```
+
+Note the additional `genes` element on the `dge` list compared to the object 
+from the [previous section](#DGEList-to-DESeqDataSet).
+
+# Create *DGEList* objects from *SummarizedExperiment*
+
+Similarly as for the *DESeqDataSet* constructor from `r Biocpkg("DESeq2")`, 
+it is possible to directly use `RangedSummarizedExperiment` objects as input to 
+the generic *DGEList* constructor defined in `r Rpackage("DEFormats")`. This 
+allows you to use common input objects regardless of whether you are applying 
+`r Rpackage("DESeq2")` or `r Rpackage("edgeR")` to perform your analysis, or to 
+easily switch between these two tools in your pipeline.
+
+```{r dgeSE}
+dge = DGEList(se)
+dge
+```
+
+# Session info
+
+```{r sessionInfo}
+sessionInfo()
+```
