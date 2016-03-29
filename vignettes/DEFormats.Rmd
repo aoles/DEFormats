@@ -49,7 +49,7 @@ and columns to samples.
 head(counts)
 ```
 
-In order to construct a `DGEList` object we need to provide, apart from the 
+In order to construct a *DGEList* object we need to provide, apart from the 
 counts matrix, the sample grouping.
 
 ```{r dge}
@@ -59,7 +59,7 @@ dge = DGEList(counts, group = group)
 dge
 ```
 
-A `DGEList` object can be easily converted to a `DESeqDataSet` object with the 
+A *DGEList* object can be easily converted to a *DESeqDataSet* object with the 
 help of the function `as.DESeqDataSet`.
 
 ```{r dds}
@@ -68,16 +68,16 @@ dds
 ```
 
 Just to make sure that the coercions conserve the data and metadata, we now 
-convert `dds` back to a `DGEList` and compare the result to the original `dge` 
+convert `dds` back to a *DGEList* and compare the result to the original `dge` 
 object.
 
 ```{r dgedds}
 identical(dge, as.DGEList(dds))
 ```
 
-Note that because of the use of reference classes in the `SummarizedExperiment`
-class which `DESeqDataSet` extends, `identical` will return `FALSE` for any two
-`DESeqDataSet` instances, even for ones constructed from the same input:
+Note that because of the use of reference classes in the *SummarizedExperiment*
+class which *DESeqDataSet* extends, `identical` will return `FALSE` for any two
+*DESeqDataSet* instances, even for ones constructed from the same input:
 
 ```{r identicalDDS}
 dds1 = DESeqDataSetFromMatrix(counts, data.frame(condition=group), ~ condition)
@@ -89,7 +89,7 @@ identical(dds1, dds2)
 ## *DESeqDataSet* to *DGEList*
 
 Instead of a count matrix, `simulateRnaSeqData` can also return an 
-annotated `RangedSummarizedExperiment` object. The advantage of such an object 
+annotated *RangedSummarizedExperiment* object. The advantage of such an object 
 is that, apart from the counts matrix stored in the `assay` slot, it also 
 contains sample description in `colData`, and gene information stored in 
 `rowRanges` as a `GRanges` object.
@@ -99,13 +99,13 @@ se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
 se
 ```
 
-The `se` object can be readily used to construct a `DESeqDataSet` object,
+The `se` object can be readily used to construct a *DESeqDataSet* object,
 
 ```{r dds_se}
 dds = DESeqDataSet(se, design = ~ condition)
 ```
 
-which can be converted to a `DGEList` using the familiar method.
+which can be converted to a *DGEList* using the familiar method.
 
 ```{r dgedds2}
 dge = as.DGEList(dds)
@@ -117,9 +117,9 @@ from the [previous section](#DGEList-to-DESeqDataSet).
 
 # Create *DGEList* objects from *SummarizedExperiment*
 
-Similarly as for the *DESeqDataSet* constructor from `r Biocpkg("DESeq2")`, 
-it is possible to directly use `RangedSummarizedExperiment` objects as input to 
-the generic *DGEList* constructor defined in `r Rpackage("DEFormats")`. This 
+Similarly as for the `DESeqDataSet` constructor from `r Biocpkg("DESeq2")`, 
+it is possible to directly use *RangedSummarizedExperiment* objects as input to 
+the generic `DGEList` constructor defined in `r Rpackage("DEFormats")`. This 
 allows you to use common input objects regardless of whether you are applying 
 `r Rpackage("DESeq2")` or `r Rpackage("edgeR")` to perform your analysis, or to 
 easily switch between these two tools in your pipeline.
@@ -127,6 +127,22 @@ easily switch between these two tools in your pipeline.
 ```{r dgeSE}
 dge = DGEList(se)
 dge
+```
+
+# FAQ
+
+## Coerce *DGEList* to *RangedSummarizedExperiment*
+
+Even though there is no direct method to go from a *DGEList* to a 
+*RangedSummarizedExperiment*, the coercion can be easily performed by first 
+converting the object to a *DESeqDataSet*, which is a subclass of
+*RangedSummarizedExperiment*, and then coercing the resulting object to its 
+superclass.
+
+```{r rse}
+dds = as.DESeqDataSet(dge)
+rse = as(dds, "RangedSummarizedExperiment")
+rse
 ```
 
 # Session info
