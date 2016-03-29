@@ -14,6 +14,8 @@ test_that("the returned value is of class DGEList", {
 test_that("the resulting objects contain the same information", {
   samples = colData(se)
   genes = as.data.frame(rowRanges(se))
-  expect_identical(DGEList(se),
-                   DGEList(mx, samples = samples, genes = genes))
+  dge = DGEList(se)
+  expect_identical(dge, DGEList(mx, samples = samples, genes = genes))
+  rse = as(as.DESeqDataSet(dge), "RangedSummarizedExperiment")
+  expect_identical(dge, DGEList(rse))
 })

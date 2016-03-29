@@ -1,21 +1,29 @@
 Package: DEFormats
 Type: Package
 Title: Differential gene expression data formats converter
-Version: 0.99.5
+Version: 0.99.6
 Encoding: UTF-8
 Author: Andrzej Oleś
 Maintainer: Andrzej Oleś <andrzej.oles@gmail.com>
 URL: https://github.com/aoles/DEFormats
 BugReports: https://github.com/aoles/DEFormats/issues
-Description: Covert between different data formats used by differential
-        gene expression analysis tools.
+Description: Covert between different data formats used by differential gene 
+  expression analysis tools.
 License: GPL-3
-Depends: R (>= 3.3)
-Imports: checkmate, DESeq2, edgeR (>= 3.13.4), GenomicRanges, methods,
-        stats, SummarizedExperiment
-Suggests: BiocStyle (>= 1.8.0), knitr, rmarkdown, testthat
+Imports:
+    checkmate,
+    DESeq2,
+    edgeR (>= 3.13.4),
+    GenomicRanges,
+    methods,
+    stats,
+    SummarizedExperiment
+Suggests:
+    BiocStyle (>= 1.8.0),
+    knitr,
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
 biocViews: DifferentialExpression, GeneExpression, RNASeq, Sequencing,
-        Transcription
+  Transcription
 RoxygenNote: 5.0.1
-NeedsCompilation: no
