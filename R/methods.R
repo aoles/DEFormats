@@ -118,13 +118,22 @@ as.DESeqDataSet.DGEList = function (x, ...) as(x, "DESeqDataSet")
 #' @rdname DGEList
 #' @export
 setMethod ("DGEList", signature(counts = "RangedSummarizedExperiment"),
-  function(counts,
-           lib.size = colSums(assay(counts)),
-           norm.factors = rep(1, ncol(counts)),
+  function(counts = new("RangedSummarizedExperiment"),
+           lib.size = colData(counts)$lib.size,
+           norm.factors = colData(counts)$norm.factors,
            samples = colData(counts),
-           group = NULL,
+           group = colData(counts)$group,
            genes = as.data.frame(rowRanges(counts)),
            remove.zeros = FALSE) {
+      # remove duplicated columns
+      if (!is.null(samples)) {
+        dup = names(samples) %in% c("lib.size", "norm.factors", "group")
+        samples = if (all(dup)) {
+          NULL
+        } else {
+          samples = samples[!dup]
+        }
+      }
       DGEList(assay(counts),
               lib.size = lib.size,
               norm.factors = norm.factors,

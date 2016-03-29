@@ -10,10 +10,12 @@ DGEList(counts = matrix(0, 0, 0), lib.size = colSums(counts),
   norm.factors = rep(1, ncol(counts)), samples = NULL, group = NULL,
   genes = NULL, remove.zeros = FALSE)
 
-\S4method{DGEList}{RangedSummarizedExperiment}(counts = matrix(0, 0, 0),
-  lib.size = colSums(assay(counts)), norm.factors = rep(1, ncol(counts)),
-  samples = colData(counts), group = NULL,
-  genes = as.data.frame(rowRanges(counts)), remove.zeros = FALSE)
+
+  \S4method{DGEList}{RangedSummarizedExperiment}(counts = new("RangedSummarizedExperiment"),
+  lib.size = colData(counts)$lib.size,
+  norm.factors = colData(counts)$norm.factors, samples = colData(counts),
+  group = colData(counts)$group, genes = as.data.frame(rowRanges(counts)),
+  remove.zeros = FALSE)
 }
 \arguments{
 \item{counts}{read counts, either a numeric matrix or a
