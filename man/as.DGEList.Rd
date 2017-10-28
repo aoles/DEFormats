@@ -25,6 +25,7 @@ Coerces an object to \linkS4class{DGEList}.
 \item \code{DESeqDataSet}: Coerce \code{\linkS4class{DESeqDataSet}} objects to
 \code{\link[edgeR]{DGEList-class}}.
 }}
+
 \examples{
 require("DESeq2")
 
@@ -36,10 +37,9 @@ dds
 
 as.DGEList(dds)
 }
-\author{
-Andrzej Oleś <\email{andrzej.oles@embl.de}>, 2016
-}
 \seealso{
 \code{\link{as.DESeqDataSet}}
 }
-
+\author{
+Andrzej Oleś <\email{andrzej.oles@embl.de}>, 2016-2017
+}

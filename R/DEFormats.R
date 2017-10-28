@@ -12,6 +12,7 @@
 #' @template author
 #' @docType package
 #' @name DEFormats
+#' @import data.table
 #' @importFrom checkmate qassert
 #' @importFrom edgeR DGEList
 #' @importClassesFrom edgeR DGEList
@@ -20,7 +21,7 @@
 #' @importClassesFrom DESeq2 DESeqDataSet
 #' @importFrom SummarizedExperiment rowRanges colData assay as.data.frame
 #'   SummarizedExperiment
-#' @importFrom GenomicRanges GRanges
-#' @importFrom methods setAs setGeneric setMethod
+#' @importFrom GenomicRanges GRanges makeGRangesListFromDataFrame
+#' @importFrom methods as is new setAs setGeneric setMethod
 #' @importFrom stats formula runif terms
 NULL

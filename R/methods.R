@@ -72,8 +72,28 @@ setAs(from = "DGEList",
         args$colData = from$samples
         args$design = design = formula("~ group", env = .GlobalEnv)
         
-        if (!is.null((genes = from$genes))) 
-          args$rowRanges = GRanges(genes)
+        if (!is.null((genes = from$genes))) {
+          ## attempt first constructing a GenomicRanges object
+          genes = tryCatch(
+            GRanges(genes),
+            ## if this fails try creating a GenomicRangesList from feature fragments
+            error = function(e)
+              tryCatch({
+                ## use data.table to unpack feature fragments
+                ## https://stackoverflow.com/a/43431847/2792099
+                gdt = as.data.table(genes, keep.rownames = "ID")
+                sep = getOption("DEFormats.featureFragments.sep", ",")
+                gdt = gdt[, lapply(.SD, function(x)
+                  unlist(strsplit(as.character(x), sep, fixed = TRUE))), by = "ID"]
+                makeGRangesListFromDataFrame(gdt, split.field = "ID")
+              },
+              ## coercion to GRanges or GRangesList failed, attach as is
+              error = function(e) genes ) )
+          if (is(genes, "GenomicRanges_OR_GRangesList"))
+            args$rowRanges = genes
+          else
+            args$rowData = genes
+        }
         
         to = do.call("DESeqDataSetFromMatrix", args)
         

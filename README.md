@@ -1,7 +1,7 @@
 ## Installation
 
-The package is distributed as part of the [Bioconductor](http://bioconductor.org/packages/DEFormats) project.
-To install this package, start R and enter:
+*[DEFormats](http://bioconductor.org/packages/DEFormats)* is distributed through the [Bioconductor](http://bioconductor.org) package repository.
+To install the package, start R and enter:
 
 ```
 source("https://bioconductor.org/biocLite.R")
