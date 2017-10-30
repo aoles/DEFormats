@@ -16,12 +16,13 @@
 #' @importFrom checkmate qassert
 #' @importFrom edgeR DGEList
 #' @importClassesFrom edgeR DGEList
-#' @importFrom DESeq2 DESeqDataSetFromMatrix normalizationFactors counts design
+#' @importFrom DESeq2 DESeqDataSetFromMatrix normalizationFactors counts design 
 #'   normalizationFactors<- makeExampleDESeqDataSet
 #' @importClassesFrom DESeq2 DESeqDataSet
-#' @importFrom SummarizedExperiment rowRanges colData assay as.data.frame
-#'   SummarizedExperiment
+#' @importFrom SummarizedExperiment rowData rowRanges colData assay
+#'   as.data.frame SummarizedExperiment mcols<-
 #' @importFrom GenomicRanges GRanges makeGRangesListFromDataFrame
+#' @importClassesFrom GenomicRanges GenomicRanges_OR_GRangesList
 #' @importFrom methods as is new setAs setGeneric setMethod
 #' @importFrom stats formula runif terms
 NULL

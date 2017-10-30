@@ -1,3 +1,5 @@
+.featureFragments.sep = ","
+
 ## does not need to be exported
 setAs(from = "DESeqDataSet",
       to = "DGEList",
@@ -9,10 +11,30 @@ setAs(from = "DESeqDataSet",
         ## count matrix
         args$counts = counts(from)
         
-        ## get annotation information from GRangesList
+        ## get row metadata
         genes = as.data.frame(rowRanges(from))
-        if ( nrow(genes) == nrow(args$counts) ) 
-          args$genes = genes
+        
+        if ( nrow(genes) > 1L ) {
+          if ( nrow(genes) > nrow(args$counts) ) {
+            ## pack GRangesList into csv-style data.frame
+            gdt = as.data.table(genes)
+            sep = getOption("DEFormats.featureFragments.sep", .featureFragments.sep)
+            gdt = gdt[,lapply(.SD, function(x) paste(x, collapse = sep)),
+                      .SDcols = -c("group", "group_name"),
+                      by="group_name"]
+            rownames <- gdt$group_name
+            gdt[,"group_name":=NULL]
+            genes = as.data.frame(gdt)
+            row.names(genes) = rownames
+          }
+        }
+        else {
+          genes = as.data.frame(rowData(from))
+        }
+        
+        ## check genes is non-empty
+        
+        args$genes = genes
         
         ## get sample description
         samples = as.data.frame(colData(from))
@@ -72,6 +94,8 @@ setAs(from = "DGEList",
         args$colData = from$samples
         args$design = design = formula("~ group", env = .GlobalEnv)
         
+        has_mcols = FALSE
+        
         if (!is.null((genes = from$genes))) {
           ## attempt first constructing a GenomicRanges object
           genes = tryCatch(
@@ -82,20 +106,25 @@ setAs(from = "DGEList",
                 ## use data.table to unpack feature fragments
                 ## https://stackoverflow.com/a/43431847/2792099
                 gdt = as.data.table(genes, keep.rownames = "ID")
-                sep = getOption("DEFormats.featureFragments.sep", ",")
+                sep = getOption("DEFormats.featureFragments.sep", .featureFragments.sep)
                 gdt = gdt[, lapply(.SD, function(x)
                   unlist(strsplit(as.character(x), sep, fixed = TRUE))), by = "ID"]
-                makeGRangesListFromDataFrame(gdt, split.field = "ID")
+                genes = makeGRangesListFromDataFrame(gdt, split.field = "ID")
               },
               ## coercion to GRanges or GRangesList failed, attach as is
               error = function(e) genes ) )
           if (is(genes, "GenomicRanges_OR_GRangesList"))
             args$rowRanges = genes
           else
-            args$rowData = genes
+            has_mcols = TRUE
         }
         
         to = do.call("DESeqDataSetFromMatrix", args)
+        
+        ## attach rows metadata which could not be coerced to GenomicRanges or
+        ## GRangesList as adviced in ?DESeqDataSet
+        if (has_mcols)
+          mcols(to) = genes
         
         ## copy normalization factors if present
         if (!is.null( (nf = from$offset) ))
