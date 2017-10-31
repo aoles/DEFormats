@@ -13,28 +13,28 @@ setAs(from = "DESeqDataSet",
         
         ## get row metadata
         genes = as.data.frame(rowRanges(from))
+        rownames = NULL
         
-        if ( nrow(genes) > 1L ) {
-          if ( nrow(genes) > nrow(args$counts) ) {
+        if (nrow(genes) > 1L) {
+          if (nrow(genes) > nrow(args$counts)) {
             ## pack GRangesList into csv-style data.frame
-            gdt = as.data.table(genes)
             sep = getOption("DEFormats.featureFragments.sep", .featureFragments.sep)
-            gdt = gdt[,lapply(.SD, function(x) paste(x, collapse = sep)),
-                      .SDcols = -c("group", "group_name"),
-                      by="group_name"]
-            rownames <- gdt$group_name
-            gdt[,"group_name":=NULL]
-            genes = as.data.frame(gdt)
-            row.names(genes) = rownames
+            setDT(genes)
+            genes = genes[, lapply(.SD, function(x) paste(x, collapse = sep)),
+                          .SDcols = -c("group", "group_name"),
+                          by = "group_name"]
+            rownames = "group_name"
           }
         }
         else {
-          genes = as.data.frame(rowData(from))
+          genes = rowData(from)
+          if (!is.null(genes$rownames))
+            rownames = "rownames"
         }
         
-        ## check genes is non-empty
-        
-        args$genes = genes
+        ## attach non-empty features metadata
+        if (length(genes) > 0L)
+          args$genes = data.frame(genes, row.names = rownames)
         
         ## get sample description
         samples = as.data.frame(colData(from))
@@ -109,10 +109,17 @@ setAs(from = "DGEList",
                 sep = getOption("DEFormats.featureFragments.sep", .featureFragments.sep)
                 gdt = gdt[, lapply(.SD, function(x)
                   unlist(strsplit(as.character(x), sep, fixed = TRUE))), by = "ID"]
-                genes = makeGRangesListFromDataFrame(gdt, split.field = "ID")
+                makeGRangesListFromDataFrame(gdt, split.field = "ID")
               },
-              ## coercion to GRanges or GRangesList failed, attach as is
-              error = function(e) genes ) )
+              ## coercion to GRanges or GRangesList failed, attach as DataFrame
+              error = function(e) {
+                ## add row names column as they are not supported in rowData
+                rownames = attr(genes, "row.names")
+                if (identical(rownames, (seq_len(nrow(genes)))))
+                  DataFrame(genes)
+                else
+                  DataFrame(rownames, genes)
+              } ) )
           if (is(genes, "GenomicRanges_OR_GRangesList"))
             args$rowRanges = genes
           else

@@ -25,4 +25,5 @@
 #' @importClassesFrom GenomicRanges GenomicRanges_OR_GRangesList
 #' @importFrom methods as is new setAs setGeneric setMethod
 #' @importFrom stats formula runif terms
+#' @importFrom S4Vectors DataFrame
 NULL
