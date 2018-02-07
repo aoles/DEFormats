@@ -14,27 +14,24 @@ DGEList(counts = matrix(0, 0, 0), lib.size = colSums(counts),
   \S4method{DGEList}{RangedSummarizedExperiment}(counts = new("RangedSummarizedExperiment"),
   lib.size = colData(counts)$lib.size,
   norm.factors = colData(counts)$norm.factors, samples = colData(counts),
-  group = colData(counts)$group, genes = as.data.frame(rowRanges(counts)),
+  group = NULL, genes = as.data.frame(rowRanges(counts)),
   remove.zeros = FALSE)
 }
 \arguments{
 \item{counts}{read counts, either a numeric matrix or a
-\linkS4class{RangedSummarizedExperiment} object}
+\linkS4class{RangedSummarizedExperiment} object.}
 
-\item{lib.size}{numeric vector giving the total count (sequence depth) for
-each library}
+\item{lib.size}{numeric vector giving the total count (sequence depth) for each library.}
 
-\item{norm.factors}{numeric vector of normalization factors that modify the
-library sizes}
+\item{norm.factors}{numeric vector of normalization factors that modify the library sizes.}
 
-\item{samples}{data frame containing information for each sample}
+\item{samples}{data frame containing information for each sample.}
 
-\item{group}{vector or factor giving the experimental group/condition for
-each sample/library}
+\item{group}{vector or factor giving the experimental group/condition for each sample/library.}
 
-\item{genes}{data frame containing annotation information for each gene}
+\item{genes}{data frame containing annotation information for each gene.}
 
-\item{remove.zeros}{logical, whether to remove rows that have 0 total count}
+\item{remove.zeros}{logical, whether to remove rows that have 0 total count.}
 }
 \value{
 A \linkS4class{DGEList} object.

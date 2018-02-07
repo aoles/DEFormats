@@ -4,6 +4,7 @@ context("DGEList Constructor Generic")
 
 se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
 mx = assay(se)
+names(colData(se)) = "group"
 
 test_that("the returned value is of class DGEList", {
   expect_is(DGEList(), "DGEList")

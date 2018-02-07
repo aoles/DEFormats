@@ -1,8 +1,7 @@
 ---
 title: "Differential gene expression data formats converter"
 author: "Andrzej Oleś"
-date: "`r doc_date()`"
-package: "`r pkg_ver('DEFormats')`"
+package: "DEFormats"
 vignette: >
   %\VignetteIndexEntry{Differential gene expression data formats converter}
   %\VignetteEngine{knitr::rmarkdown}
@@ -125,9 +124,14 @@ allows you to use common input objects regardless of whether you are applying
 easily switch between these two tools in your pipeline.
 
 ```{r dgeSE}
+names(colData(se)) = "group"
 dge = DGEList(se)
 dge
 ```
+
+We renamed the `condition` column of `colData(se)` to `group` in order to allow
+`r Rpackage("edgeR")` to automatically pick up the correct sample grouping.
+Another way of specifying this is through the argument `group` to `DGEList`.
 
 # FAQ
 

@@ -155,17 +155,9 @@ setAs(from = "DGEList",
 #' @export
 as.DESeqDataSet.DGEList = function (x, ...) as(x, "DESeqDataSet")
 
+#' @inheritParams edgeR::DGEList
 #' @param counts read counts, either a numeric matrix or a
-#'   \linkS4class{RangedSummarizedExperiment} object
-#' @param lib.size numeric vector giving the total count (sequence depth) for
-#'   each library
-#' @param norm.factors numeric vector of normalization factors that modify the
-#'   library sizes
-#' @param samples data frame containing information for each sample
-#' @param group vector or factor giving the experimental group/condition for
-#'   each sample/library
-#' @param genes data frame containing annotation information for each gene
-#' @param remove.zeros logical, whether to remove rows that have 0 total count
+#'   \linkS4class{RangedSummarizedExperiment} object.
 #' @examples 
 #' se = simulateRnaSeqData(output = "RangedSummarizedExperiment")
 #' 
@@ -178,12 +170,12 @@ setMethod ("DGEList", signature(counts = "RangedSummarizedExperiment"),
            lib.size = colData(counts)$lib.size,
            norm.factors = colData(counts)$norm.factors,
            samples = colData(counts),
-           group = colData(counts)$group,
+           group = NULL,
            genes = as.data.frame(rowRanges(counts)),
            remove.zeros = FALSE) {
       # remove duplicated columns
       if (!is.null(samples)) {
-        dup = names(samples) %in% c("lib.size", "norm.factors", "group")
+        dup = names(samples) %in% c("lib.size", "norm.factors")
         samples = if (all(dup)) {
           NULL
         } else {
