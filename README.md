@@ -4,8 +4,9 @@
 To install the package, start R and enter:
 
 ```
-source("https://bioconductor.org/biocLite.R")
-biocLite("DEFormats")
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install("DEFormats")
 ```
 
 ## Documentation
