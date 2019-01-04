@@ -1,7 +1,7 @@
 Package: DEFormats
 Type: Package
 Title: Differential gene expression data formats converter
-Version: 1.11.0
+Version: 1.11.1
 Encoding: UTF-8
 Author: Andrzej Oleś
 Maintainer: Andrzej Oleś <andrzej.oles@embl.de>
@@ -26,6 +26,6 @@ Suggests:
     rmarkdown,
     testthat
 VignetteBuilder: knitr
-biocViews: DifferentialExpression, GeneExpression, RNASeq, Sequencing,
+biocViews: ImmunoOncology, DifferentialExpression, GeneExpression, RNASeq, Sequencing,
   Transcription
 RoxygenNote: 6.0.1
