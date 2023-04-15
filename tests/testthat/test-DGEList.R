@@ -7,7 +7,7 @@ mx = assay(se)
 names(colData(se)) = "group"
 
 test_that("the returned value is of class DGEList", {
-  expect_is(DGEList(), "DGEList")
+  expect_is(DGEList(0), "DGEList")
   expect_is(DGEList(se), "DGEList")
   expect_is(DGEList(mx), "DGEList")
 })
