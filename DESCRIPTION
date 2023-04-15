@@ -4,7 +4,7 @@ Title: Differential gene expression data formats converter
 Version: 1.27.2
 Encoding: UTF-8
 Author: Andrzej Oleś
-Maintainer: Andrzej Oleś <andrzej.oles@embl.de>
+Maintainer: Andrzej Oleś <andrzej.oles@gmail.com>
 URL: https://github.com/aoles/DEFormats
 BugReports: https://github.com/aoles/DEFormats/issues
 Description: Convert between different data formats used by differential gene 

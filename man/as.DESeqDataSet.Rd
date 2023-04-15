@@ -41,5 +41,5 @@ as.DESeqDataSet(dge)
 \code{\link{as.DGEList}}
 }
 \author{
-Andrzej Oleś <\email{andrzej.oles@embl.de}>, 2016-2017
+Andrzej Oleś <\email{andrzej.oles@gmail.com}>, 2016-2023
 }

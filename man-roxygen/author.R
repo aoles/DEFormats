@@ -1,1 +1,1 @@
-#' @author Andrzej Oleś <\email{andrzej.oles@@embl.de}>, 2016-2017
+#' @author Andrzej Oleś <\email{andrzej.oles@@gmail.com}>, 2016-2023
