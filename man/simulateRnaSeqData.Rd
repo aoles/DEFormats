@@ -4,8 +4,13 @@
 \alias{simulateRnaSeqData}
 \title{Example counts table of RNA-seq data}
 \usage{
-simulateRnaSeqData(output = c("matrix", "RangedSummarizedExperiment"),
-  n = 1000, m = 6, seed = 0L, ...)
+simulateRnaSeqData(
+  output = c("matrix", "RangedSummarizedExperiment"),
+  n = 1000,
+  m = 6,
+  seed = 0L,
+  ...
+)
 }
 \arguments{
 \item{output}{output type}

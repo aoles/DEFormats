@@ -3,7 +3,6 @@
 \docType{package}
 \name{DEFormats}
 \alias{DEFormats}
-\alias{DEFormats-package}
 \title{Convert Between Differential Gene Expression Data Formats}
 \description{
 \pkg{DEFormats} provides data converters between various formats used by 

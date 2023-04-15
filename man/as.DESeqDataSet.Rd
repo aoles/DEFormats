@@ -22,10 +22,10 @@ Coerces an object to \linkS4class{DESeqDataSet}.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{DGEList}: Coerce \code{\link[edgeR]{DGEList-class}} objects
+\item \code{as.DESeqDataSet(DGEList)}: Coerce \code{\link[edgeR]{DGEList-class}} objects
 to \code{\linkS4class{DESeqDataSet}}.
-}}
 
+}}
 \examples{
 require("edgeR")
 
