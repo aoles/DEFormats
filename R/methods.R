@@ -1,5 +1,14 @@
 .featureFragments.sep = ","
 
+extract_genes <- function(se) {
+  genes <- rowRanges(se)
+  df <- as.data.frame(genes)
+  #FIXME: should be addressed upstream in GenomicRanges package
+  row.names(df) <- df$names
+  df$names <- NULL
+  df
+}
+
 ## does not need to be exported
 setAs(from = "DESeqDataSet",
       to = "DGEList",
@@ -12,7 +21,7 @@ setAs(from = "DESeqDataSet",
         args$counts = counts(from)
         
         ## get row metadata
-        genes = as.data.frame(rowRanges(from))
+        genes = extract_genes(from)
         rownames = NULL
         
         if (nrow(genes) > 1L) {
