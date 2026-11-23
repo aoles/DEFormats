@@ -5,6 +5,7 @@ S3method(as.DGEList,DESeqDataSet)
 export(DGEList)
 export(as.DESeqDataSet)
 export(as.DGEList)
+export(extract_genes)
 export(simulateNormFactors)
 export(simulateRnaSeqData)
 exportMethods(DGEList)
@@ -12,30 +13,40 @@ import(data.table)
 importClassesFrom(DESeq2,DESeqDataSet)
 importClassesFrom(GenomicRanges,GenomicRanges_OR_GRangesList)
 importClassesFrom(edgeR,DGEList)
-importFrom(DESeq2,"normalizationFactors<-")
-importFrom(DESeq2,DESeqDataSetFromMatrix)
-importFrom(DESeq2,counts)
-importFrom(DESeq2,design)
-importFrom(DESeq2,makeExampleDESeqDataSet)
-importFrom(DESeq2,normalizationFactors)
-importFrom(GenomicRanges,GRanges)
-importFrom(GenomicRanges,makeGRangesListFromDataFrame)
+importFrom(DESeq2,
+  "normalizationFactors<-",
+  DESeqDataSetFromMatrix,
+  counts,
+  design,
+  makeExampleDESeqDataSet,
+  normalizationFactors
+)
+importFrom(GenomicRanges,
+  GRanges,
+  makeGRangesListFromDataFrame
+)
 importFrom(S4Vectors,DataFrame)
-importFrom(SummarizedExperiment,"mcols<-")
-importFrom(SummarizedExperiment,SummarizedExperiment)
-importFrom(SummarizedExperiment,as.data.frame)
-importFrom(SummarizedExperiment,assay)
-importFrom(SummarizedExperiment,colData)
-importFrom(SummarizedExperiment,rowData)
-importFrom(SummarizedExperiment,rowRanges)
+importFrom(SummarizedExperiment,
+  "mcols<-",
+  SummarizedExperiment,
+  as.data.frame,
+  assay,
+  colData,
+  rowData,
+  rowRanges
+)
 importFrom(checkmate,qassert)
 importFrom(edgeR,DGEList)
-importFrom(methods,as)
-importFrom(methods,is)
-importFrom(methods,new)
-importFrom(methods,setAs)
-importFrom(methods,setGeneric)
-importFrom(methods,setMethod)
-importFrom(stats,formula)
-importFrom(stats,runif)
-importFrom(stats,terms)
+importFrom(methods,
+  as,
+  is,
+  new,
+  setAs,
+  setGeneric,
+  setMethod
+)
+importFrom(stats,
+  formula,
+  runif,
+  terms
+)

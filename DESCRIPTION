@@ -1,7 +1,7 @@
 Package: DEFormats
 Type: Package
 Title: Differential gene expression data formats converter
-Version: 1.41.1
+Version: 1.41.2
 Encoding: UTF-8
 Author: Andrzej Oleś
 Maintainer: Andrzej Oleś <andrzej.oles@gmail.com>
@@ -28,4 +28,4 @@ Suggests:
 VignetteBuilder: knitr
 biocViews: ImmunoOncology, DifferentialExpression, GeneExpression, RNASeq, Sequencing,
   Transcription
-RoxygenNote: 7.2.3
+Config/roxygen2/version: 8.1.1

@@ -28,7 +28,7 @@ test_that("elements from DESeqDataSet are carried over to DGEList", {
   expect_identical(dge$samples$norm.factors, colData(dds)$norm.factors)
   expect_identical(dge$samples$lib.size, colData(dds)$lib.size)
   expect_identical(dge$genes, extract_genes(dds))
-s})
+})
 
 test_that("converting to DGEList and back to DESeqDataSet restores the original object", {
   dgedds = as.DESeqDataSet(dge)

@@ -2,6 +2,7 @@
 % Please edit documentation in R/DEFormats.R
 \docType{package}
 \name{DEFormats}
+\alias{DEFormats-package}
 \alias{DEFormats}
 \title{Convert Between Differential Gene Expression Data Formats}
 \description{
@@ -15,6 +16,14 @@ Currently the package supports data conversion between \pkg{DESeq2} and
 
 Objects can be coerced using the following methods \itemize{ \item 
 \code{\link{as.DESeqDataSet}} \item \code{\link{as.DGEList}} }
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/aoles/DEFormats}
+  \item Report bugs at \url{https://github.com/aoles/DEFormats/issues}
+}
+
 }
 \author{
 Andrzej Oleś <\email{andrzej.oles@gmail.com}>, 2016-2023

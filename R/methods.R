@@ -1,5 +1,8 @@
 .featureFragments.sep = ","
 
+#' @rdname DGEList
+#' @usage NULL
+#' @export
 extract_genes <- function(se) {
   genes <- rowRanges(se)
   df <- as.data.frame(genes)
@@ -180,7 +183,7 @@ setMethod ("DGEList", signature(counts = "RangedSummarizedExperiment"),
            norm.factors = colData(counts)$norm.factors,
            samples = colData(counts),
            group = NULL,
-           genes = as.data.frame(rowRanges(counts)),
+           genes = extract_genes(counts),
            remove.zeros = FALSE) {
       # remove duplicated columns
       if (!is.null(samples)) {

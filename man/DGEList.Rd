@@ -2,6 +2,7 @@
 % Please edit documentation in R/AllGenerics.R, R/methods.R
 \name{DGEList}
 \alias{DGEList}
+\alias{extract_genes}
 \alias{DGEList,RangedSummarizedExperiment-method}
 \title{DGEList Constructor Generic}
 \usage{
@@ -13,7 +14,7 @@ DGEList(counts, ...)
   norm.factors = colData(counts)$norm.factors,
   samples = colData(counts),
   group = NULL,
-  genes = as.data.frame(rowRanges(counts)),
+  genes = extract_genes(counts),
   remove.zeros = FALSE
 )
 }
